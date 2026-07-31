@@ -134,6 +134,22 @@
     "description": "Base rate for virtual tutoring services"
   }
   </script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "EducationalOrganization",
+  "name": "All Inclusive Tutoring LLC",
+  "url": "https://allinclusivetutoring.com/",
+  "description": "Expert tutoring services for special education, ESA programs, and advanced STEM.",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "659-225-0660",
+    "contactType": "Customer Support"
+  }
+}
+</script>
+
 </head>
 <body>
 
@@ -165,7 +181,7 @@
     <div class="trial-content">
       <h2>90-Minute Introductory Trial</h2>
       <p>Experience our approach before committing. Two 45-minute sessions customized for your student.</p>
-      <a href="https://calendly.com/allinclusivetutoring" target="_blank" class="trial-cta">Book Trial Package</a>
+      <a href="/signup.html" class="trial-cta">Book Trial Package</a>
     </div>
     <div class="trial-price">
       <div class="price">$27.50</div>
@@ -328,6 +344,14 @@
             <div class="group-saving" id="prep-group-msg" style="display:none;">
               Split with up to 4 students! Rate remains the same.
             </div>
+
+            <a id="prep-buy" href="https://buy.stripe.com/6oU4gsa1BfF35mxbTf2go00" target="_blank" rel="noopener"
+               style="display:none; margin-top:1.1rem; padding:12px 26px; border-radius:100px; background:#e8a020; color:#0d2340; font-weight:700; text-decoration:none; text-align:center;">
+              Buy this package &rarr;
+            </a>
+            <p id="prep-buy-note" style="display:none; margin-top:.7rem; font-size:0.8rem; color:rgba(255,255,255,0.65);">
+              Using ESA funds? <a href="/signup.html" style="color:#f5c96a;">Sign up here</a> instead &mdash; I'll bill your state platform directly.
+            </p>
           </div>
         </div>
       </div>
@@ -507,6 +531,19 @@
     } else {
       prepPerStudWrap.style.display = 'none';
       prepGroupMsg.style.display = 'none';
+    }
+
+    // Show a direct Buy button only for packages that have a Stripe link
+    var key = (type === '30m' ? '30-' : 'hr-') + selectedPrepVal;
+    var buyEl = document.getElementById('prep-buy');
+    var noteEl = document.getElementById('prep-buy-note');
+    if (PAY_LINKS[key]) {
+      buyEl.href = PAY_LINKS[key];
+      buyEl.style.display = 'block';
+      noteEl.style.display = 'block';
+    } else {
+      buyEl.style.display = 'none';
+      noteEl.style.display = 'none';
     }
   }
 

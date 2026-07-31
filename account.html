@@ -31,6 +31,22 @@
   .panel.active { display:block; }
   .back { display:block; text-align:center; margin-top:1.5rem; font-size:0.85rem; color:var(--text-mid); text-decoration:none; }
 </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "EducationalOrganization",
+  "name": "All Inclusive Tutoring LLC",
+  "url": "https://allinclusivetutoring.com/",
+  "description": "Expert tutoring services for special education, ESA programs, and advanced STEM.",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "659-225-0660",
+    "contactType": "Customer Support"
+  }
+}
+</script>
+
 </head>
 <body>
 
@@ -103,7 +119,11 @@
     const email = document.getElementById('regEmail').value;
     const password = document.getElementById('regPassword').value;
 
-    const { data, error } = await supabaseClient.auth.signUp({ email, password });
+    const { data, error } = await supabaseClient.auth.signUp({
+      email,
+      password,
+      options: { emailRedirectTo: 'https://allinclusivetutoring.com/dashboard.html' }
+    });
 
     if (error) {
       showMsg(error.message, 'error');

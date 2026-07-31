@@ -49,6 +49,22 @@
   .pill { display:inline-block; background:var(--soft-gray); font-size:0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:0.05em; padding:4px 10px; border-radius:100px; color:var(--text-mid); }
   .pill.owned { background:#e1f5ee; color:var(--teal); }
 </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "EducationalOrganization",
+  "name": "All Inclusive Tutoring LLC",
+  "url": "https://allinclusivetutoring.com/",
+  "description": "Expert tutoring services for special education, ESA programs, and advanced STEM.",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "659-225-0660",
+    "contactType": "Customer Support"
+  }
+}
+</script>
+
 </head>
 <body>
 
@@ -64,6 +80,8 @@
   <div class="tabs">
     <div class="tab active" onclick="showTab('profile')">Profile</div>
     <div class="tab" onclick="showTab('requests')">Requests</div>
+    <div class="tab" onclick="showTab('sessions')">Sessions</div>
+    <div class="tab" onclick="showTab('assignments')">Assignments</div>
     <div class="tab" onclick="showTab('courses')">Courses</div>
     <div class="tab" onclick="showTab('billing')">Billing</div>
   </div>
@@ -129,6 +147,46 @@
   </div>
 
   <!-- COURSES TAB -->
+  <!-- SESSIONS TAB -->
+  <div class="panel" id="sessionsPanel">
+    <div class="card">
+      <h3>Session Archive</h3>
+      <p style="color:var(--text-mid); font-size:0.9rem; margin-bottom:1rem;">A record of what we covered each session and what comes next.</p>
+      <div id="sessionsList"><p class="empty">Loading&hellip;</p></div>
+    </div>
+  </div>
+
+  <!-- ASSIGNMENTS TAB -->
+  <div class="panel" id="assignmentsPanel">
+    <div class="card">
+      <h3>Assignments</h3>
+      <div id="assignmentsList"><p class="empty">Loading&hellip;</p></div>
+    </div>
+    <div class="card">
+      <h3>Upload Homework</h3>
+      <p style="color:var(--text-mid); font-size:0.9rem; margin-bottom:1rem;">Send me your work, a photo of a problem, a syllabus, or anything you'd like me to look at before our next session.</p>
+      <div class="form-group">
+        <label>Attach to an assignment <span style="font-weight:400;color:var(--text-mid);">(optional)</span></label>
+        <select id="uploadAssignment"><option value="">Not related to a specific assignment</option></select>
+      </div>
+      <div class="form-group">
+        <label>Note <span style="font-weight:400;color:var(--text-mid);">(optional)</span></label>
+        <input type="text" id="uploadNote" placeholder="e.g. Stuck on #7 and #12" />
+      </div>
+      <div class="form-group">
+        <label>Choose file</label>
+        <input type="file" id="uploadFile" />
+        <p style="font-size:0.8rem;color:var(--text-mid);margin-top:0.35rem;">PDF, Word, images, or text. Max 20&nbsp;MB.</p>
+      </div>
+      <button class="btn" onclick="uploadHomework()" id="uploadBtn">Upload File</button>
+      <div class="msg" id="uploadMsg"></div>
+    </div>
+    <div class="card">
+      <h3>Your Uploaded Files</h3>
+      <div id="uploadsList"><p class="empty">Loading&hellip;</p></div>
+    </div>
+  </div>
+
   <div class="panel" id="coursesPanel">
     <div class="card">
       <h3>Your Digital Learning Library</h3>
@@ -160,6 +218,8 @@
     document.getElementById(name + 'Panel').classList.add('active');
     if (name === 'requests') loadRequests();
     if (name === 'courses') loadCourses();
+    if (name === 'sessions') loadSessions();
+    if (name === 'assignments') { loadAssignments(); loadUploads(); }
   }
 
   function showMsg(id, text, type) {
@@ -265,12 +325,165 @@
             <p>${c.description || ''}</p>
           </div>
           ${owned
-            ? `<a href="/course-player.html" class="btn btn-gold">Continue →</a>`
-            : `<a href="/courses.html" class="btn">$${(c.price_cents / 100).toFixed(2)} — View →</a>`
+            ? `<a href="/course.html?slug=${c.slug}" class="btn btn-gold">Continue →</a>`
+            : `<span class="pill">$${(c.price_cents / 100).toFixed(2)}</span>`
           }
         </div>
       `;
     }).join('');
+  }
+
+
+  /* ---------------- SESSION ARCHIVE ---------------- */
+  async function loadSessions() {
+    const list = document.getElementById('sessionsList');
+    const { data, error } = await supabaseClient
+      .from('sessions').select('*')
+      .eq('profile_id', currentUser.id)
+      .order('session_date', { ascending: false });
+
+    if (error) { list.innerHTML = '<p class="empty">Could not load sessions.</p>'; return; }
+    if (!data || !data.length) {
+      list.innerHTML = '<p class="empty">No sessions logged yet &mdash; your first one will appear here after we meet.</p>';
+      return;
+    }
+    list.innerHTML = data.map(s => {
+      const d = new Date(s.session_date + 'T00:00:00')
+        .toLocaleDateString(undefined, { weekday:'short', month:'short', day:'numeric', year:'numeric' });
+      const dur = s.duration_minutes ? ' &middot; ' + s.duration_minutes + ' min' : '';
+      return `
+        <div class="course-card" style="display:block;">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;">
+            <h4 style="margin:0;">${esc(s.subject) || 'Tutoring session'}</h4>
+            <span class="pill">${d}${dur}</span>
+          </div>
+          ${s.what_we_covered ? `<p style="margin-top:.6rem;"><strong style="color:var(--navy);">What we covered:</strong> ${esc(s.what_we_covered)}</p>` : ''}
+          ${s.next_steps ? `<p style="margin-top:.4rem;"><strong style="color:var(--teal);">Next steps:</strong> ${esc(s.next_steps)}</p>` : ''}
+        </div>`;
+    }).join('');
+  }
+
+  /* ---------------- ASSIGNMENTS ---------------- */
+  async function loadAssignments() {
+    const list = document.getElementById('assignmentsList');
+    const sel  = document.getElementById('uploadAssignment');
+    const { data, error } = await supabaseClient
+      .from('assignments').select('*')
+      .eq('profile_id', currentUser.id)
+      .order('due_date', { ascending: true, nullsFirst: false });
+
+    if (error) { list.innerHTML = '<p class="empty">Could not load assignments.</p>'; return; }
+
+    sel.innerHTML = '<option value="">Not related to a specific assignment</option>';
+    if (!data || !data.length) {
+      list.innerHTML = '<p class="empty">No assignments yet.</p>';
+      return;
+    }
+    data.forEach(a => {
+      const o = document.createElement('option');
+      o.value = a.id; o.textContent = a.title;
+      sel.appendChild(o);
+    });
+
+    const today = new Date().toISOString().slice(0,10);
+    list.innerHTML = data.map(a => {
+      const overdue = a.due_date && a.due_date < today && a.status === 'assigned';
+      const due = a.due_date
+        ? new Date(a.due_date + 'T00:00:00').toLocaleDateString(undefined,{month:'short',day:'numeric'})
+        : 'No due date';
+      return `
+        <div class="course-card" style="display:block; ${overdue ? 'border-color:#e97c6f;' : ''}">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;">
+            <h4 style="margin:0;">${esc(a.title)}</h4>
+            <span class="pill ${a.status !== 'assigned' ? 'owned' : ''}" ${overdue ? 'style="background:#fde8e8;color:#c0392b;"' : ''}>
+              ${overdue ? 'Overdue &middot; ' : ''}${due}
+            </span>
+          </div>
+          ${a.instructions ? `<p style="margin-top:.5rem;">${esc(a.instructions)}</p>` : ''}
+          <span class="pill" style="margin-top:.6rem;display:inline-block;">${esc(a.status)}</span>
+        </div>`;
+    }).join('');
+  }
+
+  /* ---------------- FILE UPLOADS ---------------- */
+  async function uploadHomework() {
+    const fileInput = document.getElementById('uploadFile');
+    const btn = document.getElementById('uploadBtn');
+    const file = fileInput.files[0];
+
+    if (!file) { showMsg('uploadMsg', 'Please choose a file first.', 'error'); return; }
+    if (file.size > 20 * 1024 * 1024) { showMsg('uploadMsg', 'That file is larger than 20 MB. Please compress it or send a smaller version.', 'error'); return; }
+
+    btn.disabled = true; btn.textContent = 'Uploading…';
+
+    const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, '_');
+    const path = currentUser.id + '/' + Date.now() + '_' + safeName;
+
+    const { error: upErr } = await supabaseClient.storage
+      .from('student-files').upload(path, file);
+
+    if (upErr) {
+      showMsg('uploadMsg', 'Upload failed: ' + upErr.message, 'error');
+      btn.disabled = false; btn.textContent = 'Upload File';
+      return;
+    }
+
+    const assignmentId = document.getElementById('uploadAssignment').value || null;
+    const { error: dbErr } = await supabaseClient.from('uploads').insert({
+      profile_id: currentUser.id,
+      assignment_id: assignmentId,
+      file_name: file.name,
+      storage_path: path,
+      file_size: file.size,
+      note: document.getElementById('uploadNote').value || null
+    });
+
+    btn.disabled = false; btn.textContent = 'Upload File';
+
+    if (dbErr) { showMsg('uploadMsg', 'File uploaded but could not be recorded: ' + dbErr.message, 'error'); return; }
+
+    showMsg('uploadMsg', 'Uploaded! I\'ll take a look before our next session.', 'success');
+    fileInput.value = ''; document.getElementById('uploadNote').value = '';
+    loadUploads();
+  }
+
+  async function loadUploads() {
+    const list = document.getElementById('uploadsList');
+    const { data, error } = await supabaseClient
+      .from('uploads').select('*')
+      .eq('profile_id', currentUser.id)
+      .order('uploaded_at', { ascending: false });
+
+    if (error) { list.innerHTML = '<p class="empty">Could not load files.</p>'; return; }
+    if (!data || !data.length) { list.innerHTML = '<p class="empty">No files uploaded yet.</p>'; return; }
+
+    list.innerHTML = data.map(u => {
+      const when = new Date(u.uploaded_at).toLocaleDateString(undefined,{month:'short',day:'numeric',year:'numeric'});
+      const kb = u.file_size ? Math.round(u.file_size/1024) + ' KB' : '';
+      return `
+        <div class="course-card">
+          <div>
+            <h4>${esc(u.file_name)}</h4>
+            <p>${when}${kb ? ' &middot; ' + kb : ''}${u.note ? ' &middot; ' + esc(u.note) : ''}</p>
+          </div>
+          <button class="btn btn-outline" onclick="downloadFile('${u.storage_path}')">Download</button>
+        </div>`;
+    }).join('');
+  }
+
+  async function downloadFile(path) {
+    const { data, error } = await supabaseClient.storage
+      .from('student-files').createSignedUrl(path, 60);
+    if (error) { alert('Could not open that file: ' + error.message); return; }
+    window.open(data.signedUrl, '_blank');
+  }
+
+  /* escape user/tutor-entered text before inserting as HTML */
+  function esc(str) {
+    if (str === null || str === undefined) return '';
+    return String(str)
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+      .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
   }
 
   (async () => {

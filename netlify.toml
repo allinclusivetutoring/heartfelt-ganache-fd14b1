@@ -1,11 +1,11 @@
 [build]
+  functions = "netlify/functions"
   publish = "."
 
-[functions]
-  directory = "netlify/functions"
-  # Functions are pre-bundled (dependencies inlined via esbuild),
-  # so no npm install / build step is required for a manual deploy.
-  node_bundler = "none"
+# NOTE: the previous [[redirects]] block was removed.
+# It mapped /.netlify/functions/* to itself, which is a no-op, and Netlify
+# rejects "/.netlify" as a redirect source. Functions are served at that
+# path automatically — no redirect rule is needed.
 
 [[headers]]
   for = "/*"
