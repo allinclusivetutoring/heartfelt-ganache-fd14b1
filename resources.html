@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Parent Resources | ESA State Guides & Getting Started | All Inclusive Tutoring</title>
+  <meta name="description" content="Free resources for ESA families: state-by-state ESA guides, a getting started roadmap, recommended learning tools, and expert tutoring support from an approved vendor.">
+  <link rel="canonical" href="https://allinclusivetutoring.com/resources">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://allinclusivetutoring.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Resources",
+        "item": "https://allinclusivetutoring.com/resources"
+      }
+    ]
+  }
+  </script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+
+  <style>
+    /* Reset & Base Variables */
+    :root {
+      --navy: #0d2340;
+      --navy-light: #16365d;
+      --gold: #e8a020;
+      --gold-light: #f5c96a;
+      --teal: #1d9e75;
+      --warm-white: #fffef9;
+      --text-dark: #333333;
+      --text-muted: #666666;
+      --font-body: 'DM Sans', sans-serif;
+      --font-heading: 'Playfair Display', serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--warm-white);
+      color: var(--text-dark);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: var(--font-heading);
+      color: var(--navy);
+      line-height: 1.2;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      transition: color 0.3s ease;
+    }
+
+    /* Shared Utility */
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1rem;
+      text-align: center;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .btn-gold {
+      background-color: var(--gold);
+      color: var(--navy);
+      border: 2px solid var(--gold);
+    }
+    
+    .btn-gold:hover {
+      background-color: transparent;
+      color: var(--gold);
+    }
+
+    .btn-teal {
+      background-color: var(--teal);
+      color: white;
+      border: 2px solid var(--teal);
+    }
+
+    .btn-teal:hover {
+      background-color: transparent;
+      color: var(--teal);
+    }
+
+    .btn-outline-gold {
+      background-color: transparent;
+      color: var(--gold);
+      border: 2px solid var(--gold);
+    }
+
+    .btn-outline-gold:hover {
+      background-color: var(--gold);
+      color: var(--navy);
+    }
+
+    /* Navbar exact copy styles + layout */
+    nav {
+      background-color: var(--navy);
+      color: white;
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+    .nav-row-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .nav-logo a {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+    .nav-logo span {
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      font-weight: 400;
+      color: var(--gold-light);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+    .nav-links li a {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: white;
+    }
+    .nav-links li a:hover {
+      color: var(--gold-light);
+    }
+    .nav-row-cta {
+      display: none; /* Hide on desktop, shown on mobile if needed or keep hidden */
+    }
+    .ait-cta-gold {
+      background-color: var(--gold);
+      color: var(--navy);
+      padding: 0.75rem 1.5rem;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: background-color 0.3s;
+    }
+    .ait-cta-gold:hover {
+      background-color: var(--gold-light);
+    }
+
+    @media (max-width: 768px) {
+      .nav-row-top {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+      }
+      .nav-row-cta {
+        display: block;
+        text-align: center;
+        margin-top: 1rem;
+      }
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+      color: white;
+      padding: 6rem 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at center, rgba(232, 160, 32, 0.05) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      color: var(--gold-light);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 1rem;
+      display: block;
+      font-size: 0.9rem;
+    }
+
+    .hero h1 {
+      color: white;
+      font-size: 3.5rem;
+      max-width: 900px;
+      margin: 0 auto 1.5rem;
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      max-width: 700px;
+      margin: 0 auto;
+      color: rgba(255,255,255,0.9);
+      font-weight: 300;
+    }
+
+    /* State Guides Section */
+    .state-guides {
+      padding: 5rem 0;
+      background-color: var(--warm-white);
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .section-header h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .section-header p {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .grid-states {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .state-card {
+      background: white;
+      border-radius: 16px;
+      padding: 2.5rem 2rem;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(13, 35, 64, 0.05);
+      border-bottom: 4px solid var(--teal);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .state-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(13, 35, 64, 0.1);
+    }
+
+    .state-name {
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      color: var(--navy);
+      margin-bottom: 0.5rem;
+    }
+
+    .program-name {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      flex-grow: 1;
+    }
+
+    .state-card .btn-teal {
+      width: 100%;
+      padding: 0.75rem 1.5rem;
+      font-size: 0.9rem;
+    }
+
+    /* Getting Started / Explainer Split */
+    .guide-split {
+      padding: 5rem 0;
+      background-color: #f4f6f8;
+    }
+
+    .guide-split-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+
+    .featured-card {
+      background: white;
+      border-radius: 20px;
+      padding: 3rem;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.06);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .featured-card.gold-border {
+      border: 2px solid var(--gold);
+    }
+
+    .featured-card h3 {
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+      color: var(--navy);
+    }
+
+    .featured-card p {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+    }
+
+    /* Recommended Resources */
+    .resources {
+      padding: 6rem 0;
+      background-color: var(--warm-white);
+    }
+
+    .resource-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .resource-category {
+      background: white;
+      border-radius: 16px;
+      padding: 2.5rem;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.04);
+      border: 1px solid rgba(0,0,0,0.05);
+      transition: box-shadow 0.3s ease;
+    }
+    
+    .resource-category:hover {
+      box-shadow: 0 12px 35px rgba(0,0,0,0.08);
+    }
+
+    .resource-category h4 {
+      font-size: 1.4rem;
+      margin-bottom: 1.5rem;
+      color: var(--navy);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .resource-category h4::before {
+      content: '';
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      background-color: var(--gold);
+      border-radius: 50%;
+    }
+
+    .resource-list {
+      list-style: none;
+    }
+
+    .resource-list li {
+      margin-bottom: 1.25rem;
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .resource-list li:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .resource-list a {
+      font-weight: 600;
+      color: var(--navy);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .resource-list a:hover {
+      color: var(--teal);
+    }
+
+    .resource-list p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    /* CTA Section */
+    .cta-section {
+      background-color: var(--navy);
+      color: white;
+      padding: 5rem 0;
+      text-align: center;
+    }
+
+    .cta-section h2 {
+      color: white;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .cta-section p {
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+      color: rgba(255,255,255,0.8);
+    }
+
+    /* Footer exact copy styles */
+    footer {
+      background-color: #081628;
+      color: white;
+      padding: 4rem 2rem 2rem;
+      text-align: center;
+    }
+    .footer-logo {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .footer-logo span {
+      display: block;
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.6);
+      margin-top: 0.5rem;
+    }
+
+    @media (max-width: 992px) {
+      .guide-split-container {
+        grid-template-columns: 1fr;
+      }
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .grid-states {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- EXACT NAV PROVIDED -->
+  <nav>
+    <div class="nav-row-top">
+      <div class="nav-logo"><a href="/">All Inclusive Tutoring <span>Solutions LLC</span></a></div>
+      <ul class="nav-links">
+        <li><a href="/services.html">Services</a></li>
+        <li><a href="/pricing.html">Pricing</a></li>
+        <li><a href="/resources.html" style="color:#f5c96a;">Resources</a></li>
+        <li><a href="/why-choose-us.html">About</a></li>
+        <li><a href="/account.html">Parent Portal</a></li>
+      </ul>
+    </div>
+    <div class="nav-row-cta">
+      <a href="https://calendly.com/allinclusivetutoring" target="_blank" class="ait-cta-gold">Book Free Consultation &rarr;</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <span class="hero-eyebrow">Parent Resources</span>
+      <h1>Everything You Need to Navigate ESA Funding & Support Your Student</h1>
+      <p>Free resources for ESA families: state-by-state guides, a step-by-step roadmap, recommended learning tools, and expert tutoring support from an approved vendor.</p>
+    </div>
+  </section>
+
+  <!-- Section 1: State ESA Guides -->
+  <section class="state-guides">
+    <div class="container">
+      <div class="section-header">
+        <h2>State-by-State ESA Guides</h2>
+        <p>We're an approved ESA vendor in 12 states. Click your state for a complete guide to the program, eligible expenses, and how to book sessions using your funds.</p>
+      </div>
+      
+      <div class="grid-states">
+        <!-- AZ -->
+        <div class="state-card">
+          <div class="state-name">Arizona</div>
+          <div class="program-name">AZ ESA Program</div>
+          <a href="https://az-esatutoring.com" class="btn btn-teal">View Guide</a>
+        </div>
+        <!-- FL -->
+        <div class="state-card">
+          <div class="state-name">Florida</div>
+          <div class="program-name">Step Up For Students / FES-UA</div>
+          <a href="https://floridastepuptutoring.com" class="btn btn-teal">View Guide</a>
+        </div>
+        <!-- LA -->
+        <div class="state-card">
+          <div class="state-name">Louisiana</div>
+          <div class="program-name">LA GATOR Scholarship</div>
+          <a href="https://louisianaesatutors.com" class="btn btn-teal">View Guide</a>
+        </div>
+        <!-- IN -->
+        <div class="state-card">
+          <div class="state-name">Indiana</div>
+          <div class="program-name">Indiana ESA</div>
+          <a href="https://indianaesatutoring.com" class="btn btn-teal">View Guide</a>
+        </div>
+        <!-- IA -->
+        <div class="state-card">
+          <div class="state-name">Iowa</div>
+          <div class="program-name">Students First ESA</div>
+          <a href="https://iowaesatutoring.com" class="btn btn-teal">View Guide</a>
+        </div>
+        <!-- MT -->
+        <div class="state-card">
+          <div class="state-name">Montana</div>
+          <div class="program-name">Montana ESA</div>
+          <a href="https://montanaesatutoring.com" class="btn btn-teal">View Guide</a>
+        </div>
+        <!-- NH -->
+        <div class="state-card">
+          <div class="state-name">New Hampshire</div>
+          <div class="program-name">EFA Program</div>
+          <a href="https://nhefatutoring.com" class="btn btn-teal">View Guide</a>
+        </div>
+        <!-- NC -->
+        <div class="state-card">
+          <div class="state-name">North Carolina</div>
+          <div class="program-name">NC ESA+</div>
+          <a href="https://ncesaplustutoring.com" class="btn btn-teal">View Guide</a>
+        </div>
+        <!-- SC -->
+        <div class="state-card">
+          <div class="state-name">South Carolina</div>
+          <div class="program-name">ESTF</div>
+          <a href="https://scestftutoring.com" class="btn btn-teal">View Guide</a>
+        </div>
+        <!-- UT -->
+        <div class="state-card">
+          <div class="state-name">Utah</div>
+          <div class="program-name">Utah Fits All</div>
+          <a href="https://utahfitsalltutoring.com" class="btn btn-teal">View Guide</a>
+        </div>
+        <!-- WV -->
+        <div class="state-card">
+          <div class="state-name">West Virginia</div>
+          <div class="program-name">Hope Scholarship</div>
+          <a href="https://wvhopescholarshiptutoring.com" class="btn btn-teal">View Guide</a>
+        </div>
+        <!-- WY -->
+        <div class="state-card">
+          <div class="state-name">Wyoming</div>
+          <div class="program-name">Wyoming ESA</div>
+          <a href="https://allinclusivetutoring.com" class="btn btn-teal">View Guide</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2 & 3: Getting Started & What is ESA? -->
+  <section class="guide-split">
+    <div class="container guide-split-container">
+      <!-- Getting Started -->
+      <div class="featured-card gold-border">
+        <h3>New to ESA? Start Here.</h3>
+        <p>Not sure where to begin? Our step-by-step Getting Started Guide walks you through checking your state's eligibility, applying for funds, finding an approved vendor, and booking your first session.</p>
+        <div>
+          <a href="/getting-started.html" class="btn btn-gold">Read the Guide</a>
+        </div>
+      </div>
+      
+      <!-- What is ESA -->
+      <div class="featured-card" style="background-color: var(--navy); color: white;">
+        <h3 style="color: white;">What is ESA Funding?</h3>
+        <p style="color: rgba(255,255,255,0.8);">Never heard of ESA funding before? Our plain-English explainer breaks down exactly how ESA programs work, the 3-step money flow, and what you can use the funds for.</p>
+        <div>
+          <a href="/what-is-esa.html" class="btn btn-outline-gold">Learn How ESA Works</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 4: Recommended Learning Resources -->
+  <section class="resources">
+    <div class="container">
+      <div class="section-header">
+        <h2>Recommended Learning Tools & Organizations</h2>
+        <p>Vetted, free resources we recommend to every family we work with.</p>
+      </div>
+      
+      <div class="resource-grid">
+        <!-- SEL & Executive Function -->
+        <div class="resource-category">
+          <h4>SEL & Executive Function</h4>
+          <ul class="resource-list">
+            <li>
+              <a href="https://casel.org" target="_blank">CASEL.org &nearr;</a>
+              <p>Gold standard SEL framework</p>
+            </li>
+            <li>
+              <a href="https://understood.org" target="_blank">Understood.org &nearr;</a>
+              <p>Free resources for neurodiverse learners</p>
+            </li>
+            <li>
+              <a href="https://therapistaid.com" target="_blank">TherapistAid.com &nearr;</a>
+              <p>Worksheets for emotional regulation (older students)</p>
+            </li>
+            <li>
+              <a href="https://mentalhealthcenterkids.com" target="_blank">MentalHealthCenterKids.com &nearr;</a>
+              <p>Feelings trackers and printables (younger students)</p>
+            </li>
+          </ul>
+        </div>
+        
+        <!-- Academic Support -->
+        <div class="resource-category">
+          <h4>Academic Support</h4>
+          <ul class="resource-list">
+            <li>
+              <a href="https://khanacademy.org" target="_blank">Khan Academy &nearr;</a>
+              <p>Free video lessons K–12 and college</p>
+            </li>
+            <li>
+              <a href="https://collegeboard.org" target="_blank">CollegeBoard.org &nearr;</a>
+              <p>SAT/AP prep, scholarships, college planning</p>
+            </li>
+            <li>
+              <a href="https://purplemath.com" target="_blank">Purple Math &nearr;</a>
+              <p>Free algebra through precalculus lessons</p>
+            </li>
+          </ul>
+        </div>
+        
+        <!-- Homeschool Support -->
+        <div class="resource-category">
+          <h4>Homeschool Support</h4>
+          <ul class="resource-list">
+            <li>
+              <a href="https://hslda.org" target="_blank">HSLDA.org &nearr;</a>
+              <p>Home School Legal Defense Association</p>
+            </li>
+            <li>
+              <a href="https://cathyduffyreviews.com" target="_blank">CathyDuffyReviews.com &nearr;</a>
+              <p>Homeschool curriculum reviews</p>
+            </li>
+            <li>
+              <a href="https://homeschool.com" target="_blank">Homeschool.com &nearr;</a>
+              <p>Community and resource directory</p>
+            </li>
+          </ul>
+        </div>
+        
+        <!-- Gifted & Twice-Exceptional -->
+        <div class="resource-category">
+          <h4>Gifted & Twice-Exceptional</h4>
+          <ul class="resource-list">
+            <li>
+              <a href="https://nagc.org" target="_blank">NAGC.org &nearr;</a>
+              <p>National Association for Gifted Children</p>
+            </li>
+            <li>
+              <a href="https://hoagiesgifted.org" target="_blank">HoagiesGifted.org &nearr;</a>
+              <p>Comprehensive gifted education resource</p>
+            </li>
+            <li>
+              <a href="https://chadd.org" target="_blank">CHADD.org &nearr;</a>
+              <p>Children and Adults with ADHD</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>Have Questions About ESA Funding?</h2>
+      <p>Schedule a free consultation to discuss your student's needs and how we can help.</p>
+      <a href="https://calendly.com/allinclusivetutoring" target="_blank" class="btn btn-gold">Book Free Consultation</a>
+    </div>
+  </section>
+
+  <!-- EXACT FOOTER PROVIDED -->
+  <footer>
+    <div class="footer-logo">All Inclusive Tutoring Solutions LLC<span>Virtual Tutoring &middot; STEM &middot; ACT Prep &middot; Homeschool Support &middot; ESA Accepted</span></div>
+    <div style="width:100%;border-top:1px solid rgba(255,255,255,0.08);margin:1.5rem 0;padding-top:1.5rem;">
+      <p style="font-size:0.78rem;color:rgba(255,255,255,0.45);line-height:1.7;max-width:800px;margin:0 auto;text-align:center;">
+        <strong style="color:rgba(255,255,255,0.6);">Nondiscrimination Statement:</strong> All Inclusive Tutoring Solutions does not discriminate on the basis of race, color, religion, national origin, ancestry, disability, age, marital status, sex, sexual orientation, gender identity or expression, or any other characteristic protected by applicable federal, state, or local law.
+      </p>
+    </div>
+    <p>&copy; 2025 All Inclusive Tutoring Solutions LLC. All rights reserved. &middot; <a href="/nondiscrimination.html" style="color:rgba(255,255,255,0.4);text-decoration:none;">Nondiscrimination Policy</a> &middot; <a href="/terms.html" style="color:rgba(255,255,255,0.4);text-decoration:none;">Terms &amp; Conditions</a></p>
+  </footer>
+
+</body>
+</html>

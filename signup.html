@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon-180.png" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Sign Up & Service Agreement | All Inclusive Tutoring Solutions LLC</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy: #0d2340;
+    --gold: #e8a020;
+    --gold-light: #f5c96a;
+    --teal: #1d9e75;
+    --teal-light: #e1f5ee;
+    --warm-white: #fffef9;
+    --soft-gray: #f6f5f0;
+    --text-dark: #1a1a2e;
+    --text-mid: #4a4a6a;
+    --text-light: #7a7a9a;
+  }
+  body { font-family: 'DM Sans', sans-serif; color: var(--text-dark); background: var(--soft-gray); }
+
+  nav {
+    background: var(--navy);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 6%; height: 70px;
+    border-bottom: 1px solid rgba(232,160,32,0.25);
+  }
+  .nav-logo { font-family: 'Playfair Display', serif; color: var(--gold-light); font-size: 1.1rem; }
+  .nav-logo span { color: #fff; font-weight: 400; }
+  .nav-logo a { text-decoration: none; color: inherit; display:flex; align-items:center; gap:8px; }
+  .back-link { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; }
+  .back-link:hover { color: var(--gold-light); }
+
+  .page-header {
+    background: linear-gradient(135deg, var(--navy) 0%, #1a3a60 55%, #0f4d3a 100%);
+    padding: 60px 6% 50px; text-align: center;
+  }
+  .page-header .eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: rgba(232,160,32,0.12);
+    border: 1px solid rgba(232,160,32,0.3);
+    color: var(--gold-light);
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 7px 18px; border-radius: 100px; margin-bottom: 1.5rem;
+  }
+  .page-header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    color: #fff; margin-bottom: 1rem;
+  }
+  .page-header p { color: rgba(255,255,255,0.7); max-width: 600px; margin: 0 auto; line-height: 1.7; font-weight: 300; }
+
+  .container { max-width: 760px; margin: 0 auto; padding: 60px 6% 100px; }
+
+  .agreement-box {
+    background: #fff; border: 1px solid #ede9e0; border-radius: 20px;
+    padding: 2.5rem; margin-bottom: 2.5rem;
+  }
+  .agreement-box h2 {
+    font-family: 'Playfair Display', serif; font-size: 1.5rem;
+    color: var(--navy); margin-bottom: 1rem;
+    padding-bottom: 0.75rem; border-bottom: 2px solid var(--gold-light);
+  }
+  .agreement-box h3 {
+    font-family: 'Playfair Display', serif; font-size: 1.1rem;
+    color: var(--navy); margin: 1.5rem 0 0.5rem;
+  }
+  .agreement-box p, .agreement-box li {
+    font-size: 0.92rem; color: var(--text-mid); line-height: 1.75; margin-bottom: 0.5rem;
+  }
+  .agreement-box ul { padding-left: 1.25rem; margin-bottom: 0.75rem; }
+  .agreement-box strong { color: var(--text-dark); }
+
+  .policy-highlight {
+    background: rgba(232,160,32,0.08); border: 1px solid rgba(232,160,32,0.25);
+    border-radius: 12px; padding: 1.25rem 1.5rem; margin: 1rem 0;
+    font-size: 0.9rem; color: var(--text-mid); line-height: 1.7;
+  }
+  .policy-highlight strong { color: var(--navy); }
+
+  .rate-table {
+    width: 100%; border-collapse: collapse; margin: 1rem 0;
+    font-size: 0.9rem;
+  }
+  .rate-table th, .rate-table td {
+    text-align: left; padding: 10px 14px; border-bottom: 1px solid #ede9e0;
+  }
+  .rate-table th {
+    background: var(--soft-gray); color: var(--navy);
+    font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase;
+  }
+  .rate-table td { color: var(--text-mid); }
+
+  /* FORM */
+  .form-section {
+    background: #fff; border: 1px solid #ede9e0; border-radius: 20px; padding: 2.5rem;
+  }
+  .form-section h2 {
+    font-family: 'Playfair Display', serif; font-size: 1.5rem;
+    color: var(--navy); margin-bottom: 0.5rem;
+  }
+  .form-section .sub { font-size: 0.9rem; color: var(--text-mid); margin-bottom: 1.5rem; }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+  .form-group { margin-bottom: 1.25rem; }
+  .form-group label { display: block; font-size: 0.82rem; font-weight: 600; color: var(--text-mid); margin-bottom: 0.4rem; text-transform: uppercase; letter-spacing: 0.06em; }
+  .form-group input, .form-group select, .form-group textarea {
+    width: 100%; padding: 12px 16px; border: 1.5px solid #e0ddd5;
+    border-radius: 10px; font-size: 0.95rem; font-family: 'DM Sans', sans-serif;
+    color: var(--text-dark); background: var(--soft-gray);
+    transition: border-color 0.2s; outline: none;
+  }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--gold); background: #fff; }
+  .form-group textarea { height: 90px; resize: none; }
+
+  .checkbox-group {
+    display: flex; align-items: flex-start; gap: 0.75rem;
+    background: var(--soft-gray); border-radius: 12px; padding: 1.25rem;
+    margin-bottom: 1.25rem; font-size: 0.88rem; color: var(--text-mid); line-height: 1.6;
+  }
+  .checkbox-group input[type="checkbox"] {
+    width: 20px; height: 20px; flex-shrink: 0; margin-top: 2px; accent-color: var(--gold);
+  }
+
+  .signature-field input {
+    font-family: 'Playfair Display', serif; font-size: 1.3rem; font-style: italic;
+  }
+
+  .form-submit {
+    width: 100%; background: var(--navy); color: #fff;
+    border: none; padding: 16px; border-radius: 10px;
+    font-size: 1rem; font-weight: 600; cursor: pointer;
+    transition: background 0.2s; font-family: 'DM Sans', sans-serif;
+    margin-top: 0.5rem;
+  }
+  .form-submit:hover { background: #1a3a60; }
+
+  footer {
+    background: var(--navy); padding: 2.5rem 6%;
+    text-align: center;
+  }
+  footer p { color: rgba(255,255,255,0.4); font-size: 0.8rem; }
+
+  @media (max-width: 600px) {
+    .form-row { grid-template-columns: 1fr; gap: 0; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">
+    <a href="/"><img src="/logo.svg" alt="All Inclusive Tutoring Solutions LLC logo" style="height:36px; width:36px;" /> All Inclusive Tutoring <span>LLC</span></a>
+  </div>
+  <a href="/" class="back-link">← Back to Home</a>
+</nav>
+
+<div class="page-header">
+  <div class="eyebrow">✦ New Client Sign-Up</div>
+  <h1>Let's Get Started</h1>
+  <p>Please review our service agreement below, then complete the sign-up form to begin tutoring services with All Inclusive Tutoring Solutions LLC.</p>
+</div>
+
+<div class="container">
+
+  <!-- AGREEMENT -->
+  <div class="agreement-box">
+    <h2>Tutoring Service Agreement</h2>
+
+    <p>This Service Agreement ("Agreement") is entered into between <strong>All Inclusive Tutoring Solutions LLC</strong> ("Provider") and the undersigned Parent/Guardian or Adult Student ("Client"), effective as of the date of electronic signature below.</p>
+
+    <h3>1. Services Provided</h3>
+    <p>Provider agrees to deliver virtual and/or private tutoring services in the subject areas requested, including but not limited to academic tutoring, test preparation, homeschool consulting, STEM enrichment, and executive function coaching.</p>
+
+    <h3>2. Session Rates</h3>
+    <table class="rate-table">
+      <tr><th>Session Type</th><th>Duration</th><th>Rate</th></tr>
+      <tr><td>Standard Session</td><td>30 Minutes</td><td>$13.99</td></tr>
+      <tr><td>Standard Session</td><td>1 Hour</td><td>$24.55</td></tr>
+      <tr><td>Extended Session</td><td>90 Minutes</td><td>$36.85</td></tr>
+      <tr><td>Extended Session</td><td>2 Hours</td><td>$55.99</td></tr>
+    </table>
+    <p style="font-size:0.85rem; margin-top:0.5rem;"><strong>Prepaid packages</strong> (four 30-min sessions for $53.97, five for $65.99, six for $81.02, seven for $94.99; or 5-hour/10-hour bundles) are available at a discount — see the <a href="/#pricing" style="color:var(--teal);">full pricing tool</a> for details.</p>
+    <p>Rates are subject to change with at least 30 days' written notice to active clients. ESA (Education Savings Account) families may be eligible to apply program funds toward session fees where Provider is an approved vendor.</p>
+
+    <h3>3. Scheduling & Payment</h3>
+    <ul>
+      <li>Sessions are scheduled in advance via the Provider's online booking system (Calendly) or by mutual agreement.</li>
+      <li>Payment is due prior to or at the time of each session unless otherwise arranged (e.g., ESA reimbursement processing).</li>
+      <li>Recurring/weekly sessions will be invoiced according to the frequency agreed upon at sign-up.</li>
+    </ul>
+
+    <h3>4. Cancellation & Late Notice Policy</h3>
+    <div class="policy-highlight">
+      <strong>24-Hour Notice Required.</strong> Clients must provide at least 24 hours' notice to cancel or reschedule a session. Sessions cancelled, rescheduled, or missed with less than 24 hours' notice — including no-shows — will be charged in full at the applicable session rate.
+    </div>
+    <p>Provider will make reasonable efforts to offer make-up sessions at its discretion but is under no obligation to do so for late cancellations.</p>
+
+    <h3>5. Provider Cancellations</h3>
+    <p>In the rare event Provider must cancel a session, Client will be notified as soon as possible and offered a make-up session or credit toward a future session — no charge will apply.</p>
+
+    <h3>6. Conduct & Communication</h3>
+    <p>Sessions are expected to take place in a quiet, distraction-free environment conducive to learning. Provider reserves the right to end or decline sessions involving disrespectful, abusive, or inappropriate conduct by the student or any household member, without refund for the session in progress.</p>
+
+    <h3>7. Confidentiality</h3>
+    <p>Provider will maintain confidentiality regarding student academic records, performance, and personal information, and will not share such information with third parties without Client consent, except as required by law.</p>
+
+    <h3>8. Independent Contractor Status</h3>
+    <p>Provider operates as an independent business (All Inclusive Tutoring Solutions LLC) and is not an employee of any school, district, or organization affiliated with the Client's ESA or scholarship program.</p>
+
+    <h3>9. Limitation of Liability</h3>
+    <p>While Provider is committed to delivering high-quality instruction, Provider makes no guarantee of specific academic outcomes, grade improvements, or test score results. Provider's liability under this Agreement is limited to the amount paid for services rendered.</p>
+
+    <h3>10. Term & Termination</h3>
+    <p>This Agreement remains in effect until terminated by either party with written notice (email is acceptable). Outstanding session fees, including any applicable late-cancellation charges, remain due upon termination.</p>
+
+    <h3>11. Acknowledgment</h3>
+    <p>By signing below, Client acknowledges they have read, understood, and agree to the terms of this Agreement, including the Cancellation Policy outlined in Section 4, as well as the full <a href="/terms.html" style="color:var(--teal); font-weight:600;">Terms & Conditions</a>.</p>
+  </div>
+
+  <!-- SIGN UP FORM -->
+  <div class="form-section">
+    <h2>Sign-Up & Agreement Form</h2>
+    <p class="sub">Complete the form below to officially get started. We'll follow up within 24 hours to confirm your schedule.</p>
+
+    <form id="signupForm">
+
+      <h3 style="font-family:'Playfair Display', serif; font-size:1.05rem; color:#0d2340; margin-bottom:1rem;">Parent / Guardian Information</h3>
+      <div class="form-row">
+        <div class="form-group"><label>Full Name</label><input type="text" name="parent_name" placeholder="Parent / Guardian full name" required /></div>
+        <div class="form-group"><label>Email Address</label><input type="email" name="parent_email" placeholder="your@email.com" required /></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Phone Number</label><input type="tel" name="parent_phone" placeholder="(555) 555-5555" required /></div>
+        <div class="form-group"><label>State / ESA Program (if applicable)</label><input type="text" name="esa_state" placeholder="e.g. Arizona ESA, Private Pay" /></div>
+      </div>
+
+      <h3 style="font-family:'Playfair Display', serif; font-size:1.05rem; color:#0d2340; margin:1.5rem 0 1rem;">Student Information</h3>
+      <div class="form-row">
+        <div class="form-group"><label>Student Name</label><input type="text" name="student_name" placeholder="Student's full name" required /></div>
+        <div class="form-group"><label>Grade Level</label>
+          <select name="grade" required>
+            <option value="">Select grade</option>
+            <option>K–2nd Grade</option>
+            <option>3rd–5th Grade</option>
+            <option>6th–8th Grade</option>
+            <option>9th–12th Grade</option>
+            <option>College Student</option>
+          </select>
+        </div>
+      </div>
+
+      <h3 style="font-family:'Playfair Display', serif; font-size:1.05rem; color:#0d2340; margin:1.5rem 0 1rem;">Service Details</h3>
+      <div class="form-row">
+        <div class="form-group"><label>Session Length</label>
+          <select name="session_length" id="sessionLengthSelect" onchange="updatePaymentLink()" required>
+            <option value="30 Minutes - $13.99" data-amount="13.99">30 Minutes — $13.99</option>
+            <option value="1 Hour - $24.55" data-amount="24.55" selected>1 Hour — $24.55</option>
+            <option value="90 Minutes - $36.85" data-amount="36.85">90 Minutes — $36.85</option>
+            <option value="2 Hours - $55.99" data-amount="55.99">2 Hours — $55.99</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Sessions Per Week</label>
+          <select name="sessions_per_week" required>
+            <option value="1">1 per week</option>
+            <option value="2">2 per week</option>
+            <option value="3">3 per week</option>
+            <option value="4">4 per week</option>
+            <option value="5">5 per week</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group"><label>Subjects / Areas of Focus</label><textarea name="subjects" placeholder="e.g. Algebra 2, ACT Math prep, executive function coaching..."></textarea></div>
+
+      <h3 style="font-family:'Playfair Display', serif; font-size:1.05rem; color:#0d2340; margin:1.5rem 0 1rem;">Agreement & Signature</h3>
+
+      <div class="checkbox-group">
+        <input type="checkbox" name="agree_terms" required />
+        <span>I have read and agree to the Tutoring Service Agreement above, including the <strong>24-hour cancellation policy</strong> (Section 4), and the full <a href="/terms.html" target="_blank" style="color:var(--teal); font-weight:600;">Terms & Conditions</a>.</span>
+      </div>
+
+      <div class="form-group signature-field">
+        <label>Electronic Signature (type full legal name)</label>
+        <input type="text" name="signature" placeholder="Type your full name to sign" required />
+      </div>
+
+      <div class="form-row">
+        <div class="form-group"><label>Date</label><input type="date" name="signature_date" required /></div>
+      </div>
+
+      <div id="formStatus" style="display:none; margin-bottom:1rem; padding:1rem; border-radius:10px; font-size:0.9rem;"></div>
+
+      <button type="submit" class="form-submit" id="submitBtn">Submit Sign-Up & Agreement →</button>
+
+      <div id="paymentSection" style="display:none; margin-top:1.5rem; background:var(--teal-light); border:1.5px solid var(--teal); border-radius:14px; padding:1.75rem; text-align:center;">
+        <div style="font-size:0.78rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--teal); margin-bottom:0.5rem;">Agreement Received</div>
+        <p style="color:var(--text-dark); font-size:0.95rem; margin-bottom:1rem;">Ready to lock in your first session? Pay securely below — a receipt will be emailed to you automatically.</p>
+        <a id="payNowBtn" href="#" target="_blank" class="form-submit" style="display:inline-block; text-decoration:none; background:var(--gold); width:auto; padding:14px 32px;">Pay Now — $<span id="payAmount">24.55</span> →</a>
+        <p style="font-size:0.78rem; color:var(--text-mid); margin-top:0.9rem;">ESA-funded client? No payment needed here — we'll bill your ESA platform directly instead.</p>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser/dist/email.min.js"></script>
+<script type="text/javascript">
+  (function() {
+    emailjs.init({ publicKey: "HQ9xW7dV3i9n45wD1" });
+  })();
+
+  // ⚠️ REPLACE THESE WITH YOUR REAL STRIPE PAYMENT LINKS ⚠️
+  // Create one Payment Link per tier in your Stripe Dashboard (Payment Links > + New),
+  // then paste each URL below in place of the placeholder.
+  const PAYMENT_LINKS = {
+    "30 Minutes - $13.99": "https://buy.stripe.com/REPLACE_30MIN",
+    "1 Hour - $24.55":     "https://buy.stripe.com/REPLACE_1HOUR",
+    "90 Minutes - $36.85": "https://buy.stripe.com/REPLACE_90MIN",
+    "2 Hours - $55.99":    "https://buy.stripe.com/REPLACE_2HOUR"
+  };
+
+  function updatePaymentLink() {
+    const select = document.getElementById('sessionLengthSelect');
+    const selected = select.options[select.selectedIndex];
+    const amount = selected.getAttribute('data-amount');
+    document.getElementById('payAmount').textContent = amount;
+    document.getElementById('payNowBtn').href = PAYMENT_LINKS[selected.value] || '#';
+  }
+
+  document.getElementById('signupForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const form = e.target;
+    const submitBtn = document.getElementById('submitBtn');
+    const statusBox = document.getElementById('formStatus');
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+
+    // Gather form data into a plain object
+    const formData = new FormData(form);
+    const data = {};
+    formData.forEach((value, key) => { data[key] = value; });
+
+    // Map to template params
+    const params = {
+      to_email: 'hello@allinclusivetutoring.com', // business copy goes here
+      parent_name: data.parent_name,
+      parent_email: data.parent_email,
+      parent_phone: data.parent_phone,
+      esa_state: data.esa_state || 'N/A',
+      student_name: data.student_name,
+      grade: data.grade,
+      session_length: data.session_length,
+      sessions_per_week: data.sessions_per_week,
+      subjects: data.subjects || 'N/A',
+      signature: data.signature,
+      signature_date: data.signature_date
+    };
+
+    // 1. Send copy to business
+    emailjs.send('service_xuw4e0s', 'template_ywr9rng', params)
+      .then(function() {
+        // 2. Send copy to client (override to_email with their email)
+        const clientParams = Object.assign({}, params, { to_email: data.parent_email });
+        return emailjs.send('service_xuw4e0s', 'template_8ssbu6y', clientParams);
+      })
+      .then(function() {
+        statusBox.style.display = 'block';
+        statusBox.style.background = '#e1f5ee';
+        statusBox.style.color = '#1d9e75';
+        statusBox.textContent = "✅ Success! A confirmation has been sent to your email, and we've received your sign-up. We'll be in touch within 24 hours!";
+        submitBtn.textContent = 'Submitted ✓';
+
+        // Reveal the Pay Now section, set correct amount/link for their chosen session length
+        updatePaymentLink();
+        document.getElementById('paymentSection').style.display = 'block';
+        window.scrollTo({ top: statusBox.offsetTop - 100, behavior: 'smooth' });
+      })
+      .catch(function(error) {
+        statusBox.style.display = 'block';
+        statusBox.style.background = '#fde8e8';
+        statusBox.style.color = '#c0392b';
+        statusBox.textContent = '⚠️ Something went wrong sending your sign-up. Please email us directly at hello@allinclusivetutoring.com or try again.';
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Submit Sign-Up & Agreement →';
+        console.error('EmailJS error:', error);
+      });
+  });
+</script>
+
+<footer>
+  <p>© 2025 All Inclusive Tutoring Solutions LLC. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

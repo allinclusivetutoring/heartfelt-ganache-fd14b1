@@ -1,0 +1,18 @@
+<svg width="240" height="240" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+<circle cx="120" cy="120" r="116" fill="#0d2340"/>
+
+<g transform="translate(120,128)">
+  <path d="M-45,-8 C-45,-22 -30,-26 0,-18 C30,-26 45,-22 45,-8 L45,28 C45,18 30,14 0,22 C-30,14 -45,18 -45,28 Z" fill="#fffef9"/>
+  <path d="M0,-18 L0,22" stroke="#0d2340" stroke-width="2" fill="none"/>
+  <path d="M-38,-4 L-10,-4" stroke="#0d2340" stroke-width="2" stroke-linecap="round" fill="none"/>
+  <path d="M-38,6 L-10,6" stroke="#0d2340" stroke-width="2" stroke-linecap="round" fill="none"/>
+  <path d="M-38,16 L-10,16" stroke="#0d2340" stroke-width="2" stroke-linecap="round" fill="none"/>
+  <path d="M10,-4 L38,-4" stroke="#0d2340" stroke-width="2" stroke-linecap="round" fill="none"/>
+  <path d="M10,6 L38,6" stroke="#0d2340" stroke-width="2" stroke-linecap="round" fill="none"/>
+  <path d="M10,16 L38,16" stroke="#0d2340" stroke-width="2" stroke-linecap="round" fill="none"/>
+</g>
+
+<g transform="translate(120,52)">
+  <path d="M0,-14 L4,-4 L15,-4 L6,3 L9,14 L0,7 L-9,14 L-6,3 L-15,-4 L-4,-4 Z" fill="#e8a020"/>
+</g>
+</svg>

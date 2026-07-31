@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon-180.png" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Lesson Plans | All Inclusive Tutoring Solutions LLC</title>
+<meta name="author" content="Laura Amato, All Inclusive Tutoring Solutions LLC" />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy: #0d2340;
+    --gold: #e8a020;
+    --gold-light: #f5c96a;
+    --teal: #1d9e75;
+    --teal-light: #e1f5ee;
+    --warm-white: #fffef9;
+    --soft-gray: #f6f5f0;
+    --text-dark: #1a1a2e;
+    --text-mid: #4a4a6a;
+    --text-light: #7a7a9a;
+  }
+  body { font-family: 'DM Sans', sans-serif; color: var(--text-dark); background: var(--warm-white); }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(13,35,64,0.97);
+    backdrop-filter: blur(8px);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 4%; height: 70px;
+    border-bottom: 1px solid rgba(232,160,32,0.25);
+    gap: 1.5rem;
+  }
+  .nav-logo { font-family: 'Playfair Display', serif; color: var(--gold-light); font-size: 0.95rem; white-space: nowrap; display:flex; align-items:center; gap:8px; }
+  .nav-logo span { color: #fff; font-weight: 400; }
+  .nav-logo a { text-decoration: none; color: inherit; display:flex; align-items:center; gap:8px; }
+  .back-link { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; white-space: nowrap; }
+  .back-link:hover { color: var(--gold-light); }
+
+  .page-header {
+    background: linear-gradient(135deg, var(--navy) 0%, #1a3a60 55%, #0f4d3a 100%);
+    padding: 110px 6% 60px; text-align: center;
+  }
+  .page-header .eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: rgba(232,160,32,0.12);
+    border: 1px solid rgba(232,160,32,0.3);
+    color: var(--gold-light);
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 7px 18px; border-radius: 100px; margin-bottom: 1.5rem;
+  }
+  .page-header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    color: #fff; margin-bottom: 1rem;
+  }
+  .page-header p { color: rgba(255,255,255,0.7); max-width: 600px; margin: 0 auto; line-height: 1.7; font-weight: 300; }
+
+  .container { max-width: 1100px; margin: 0 auto; padding: 60px 6% 100px; }
+
+  .filter-bar {
+    display: flex; gap: 0.6rem; flex-wrap: wrap; justify-content: center; margin-bottom: 3rem;
+  }
+  .filter-pill {
+    background: var(--soft-gray); border: 1px solid #ede9e0; border-radius: 100px;
+    padding: 8px 20px; font-size: 0.82rem; font-weight: 600; color: var(--text-mid);
+    cursor: pointer; transition: all 0.2s;
+  }
+  .filter-pill.active, .filter-pill:hover {
+    background: var(--navy); color: #fff; border-color: var(--navy);
+  }
+
+  .plans-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.75rem;
+  }
+  .plan-card {
+    background: #fff; border: 1px solid #ede9e0; border-radius: 18px;
+    overflow: hidden; transition: all 0.3s; display: flex; flex-direction: column;
+  }
+  .plan-card:hover { transform: translateY(-4px); box-shadow: 0 16px 32px rgba(13,35,64,0.08); }
+  .plan-thumb {
+    height: 140px; display: flex; align-items: center; justify-content: center;
+    font-size: 2.5rem; background: var(--soft-gray);
+  }
+  .plan-body { padding: 1.5rem; display: flex; flex-direction: column; flex: 1; }
+  .plan-tag {
+    display: inline-block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--teal); background: var(--teal-light); padding: 3px 10px; border-radius: 100px; margin-bottom: 0.6rem;
+    width: fit-content;
+  }
+  .plan-card h3 { font-family: 'Playfair Display', serif; font-size: 1.15rem; color: var(--navy); margin-bottom: 0.5rem; }
+  .plan-card p { font-size: 0.88rem; color: var(--text-mid); line-height: 1.6; margin-bottom: 1rem; flex: 1; }
+  .plan-footer { display: flex; align-items: center; justify-content: space-between; margin-top: auto; }
+  .plan-price { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--navy); font-weight: 700; }
+  .plan-btn {
+    background: var(--navy); color: #fff; border: none; padding: 10px 20px;
+    border-radius: 100px; font-size: 0.82rem; font-weight: 600; cursor: pointer;
+    transition: background 0.2s;
+  }
+  .plan-btn:hover { background: #1a3a60; }
+  .plan-btn.disabled { background: var(--soft-gray); color: var(--text-light); cursor: not-allowed; }
+
+  .coming-soon-banner {
+    background: rgba(232,160,32,0.08); border: 1px solid rgba(232,160,32,0.25);
+    border-radius: 14px; padding: 1.5rem 2rem; margin-bottom: 3rem; text-align: center;
+    font-size: 0.92rem; color: var(--text-mid); line-height: 1.7;
+  }
+  .coming-soon-banner strong { color: var(--navy); }
+
+  footer { background: var(--navy); padding: 2.5rem 6%; text-align: center; }
+  footer p { color: rgba(255,255,255,0.4); font-size: 0.8rem; }
+
+  @media (max-width: 700px) { .back-link { display: none; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">
+    <a href="/"><img src="/logo.svg" alt="All Inclusive Tutoring Solutions LLC logo" style="height:30px; width:30px;" /> All Inclusive Tutoring <span>LLC</span></a>
+  </div>
+  <a href="/" class="back-link">← Back to Home</a>
+</nav>
+
+<div class="page-header">
+  <div class="eyebrow">✦ Resource Shop</div>
+  <h1>Lesson Plans & Resources</h1>
+  <p>Printable lesson plans, worksheets, and study guides designed by Laura Amato — perfect for homeschool families, ESA-funded curriculum, and supplemental practice.</p>
+</div>
+
+<div class="container">
+
+  <div class="coming-soon-banner">
+    🛠️ <strong>Coming Soon!</strong> Our resource shop is currently in development. Browse what's planned below — checkout will be available shortly. Want early access or a custom lesson plan now? <a href="/#contact" style="color:#e8a020; font-weight:600;">Reach out directly</a>.
+  </div>
+
+  <div class="filter-bar">
+    <div class="filter-pill active">All</div>
+    <div class="filter-pill">Math</div>
+    <div class="filter-pill">ACT/SAT Prep</div>
+    <div class="filter-pill">Executive Function</div>
+    <div class="filter-pill">STEM</div>
+    <div class="filter-pill">Homeschool</div>
+  </div>
+
+  <div class="plans-grid">
+
+    <div class="plan-card">
+      <div class="plan-thumb">➗</div>
+      <div class="plan-body">
+        <span class="plan-tag">Math</span>
+        <h3>Algebra 1 Foundations Bundle</h3>
+        <p>10 lesson plans covering linear equations, inequalities, and graphing — with practice worksheets and answer keys.</p>
+        <div class="plan-footer">
+          <span class="plan-price">$12</span>
+          <button class="plan-btn disabled">Coming Soon</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="plan-card">
+      <div class="plan-thumb">🎯</div>
+      <div class="plan-body">
+        <span class="plan-tag">ACT/SAT Prep</span>
+        <h3>ACT Math 4-Week Crash Course</h3>
+        <p>A structured 4-week plan with daily practice sets, timing strategies, and full-length practice test breakdowns.</p>
+        <div class="plan-footer">
+          <span class="plan-price">$18</span>
+          <button class="plan-btn disabled">Coming Soon</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="plan-card">
+      <div class="plan-thumb">🧠</div>
+      <div class="plan-body">
+        <span class="plan-tag">Executive Function</span>
+        <h3>Weekly Planner & Study Skills Kit</h3>
+        <p>Printable weekly planners, goal-setting worksheets, and study habit trackers for students who need structure.</p>
+        <div class="plan-footer">
+          <span class="plan-price">$8</span>
+          <button class="plan-btn disabled">Coming Soon</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="plan-card">
+      <div class="plan-thumb">🧪</div>
+      <div class="plan-body">
+        <span class="plan-tag">STEM</span>
+        <h3>Intro to Engineering Mini-Projects</h3>
+        <p>5 hands-on STEM projects with material lists, step-by-step instructions, and reflection worksheets.</p>
+        <div class="plan-footer">
+          <span class="plan-price">$15</span>
+          <button class="plan-btn disabled">Coming Soon</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="plan-card">
+      <div class="plan-thumb">🏫</div>
+      <div class="plan-body">
+        <span class="plan-tag">Homeschool</span>
+        <h3>K-2 Reading & Phonics Starter Pack</h3>
+        <p>Foundational phonics lessons, sight word lists, and printable readers for early elementary homeschoolers.</p>
+        <div class="plan-footer">
+          <span class="plan-price">$10</span>
+          <button class="plan-btn disabled">Coming Soon</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="plan-card">
+      <div class="plan-thumb">📖</div>
+      <div class="plan-body">
+        <span class="plan-tag">Homeschool</span>
+        <h3>Middle School Writing Workshop</h3>
+        <p>6-week unit on essay structure, grammar review, and creative writing prompts with rubrics included.</p>
+        <div class="plan-footer">
+          <span class="plan-price">$14</span>
+          <button class="plan-btn disabled">Coming Soon</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<footer>
+  <p>© 2025 All Inclusive Tutoring Solutions LLC. All rights reserved.</p>
+</footer>
+
+<script>
+  document.querySelectorAll('.filter-pill').forEach(pill => {
+    pill.addEventListener('click', () => {
+      document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+      const category = pill.textContent.trim();
+      document.querySelectorAll('.plan-card').forEach(card => {
+        const tag = card.querySelector('.plan-tag').textContent.trim();
+        card.style.display = (category === 'All' || tag === category) ? 'flex' : 'none';
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

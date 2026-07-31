@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pricing & Packages | Virtual Tutoring Rates | All Inclusive Tutoring Solutions</title>
+  <meta name="description" content="Transparent virtual tutoring pricing starting at $9.17 per 30-min session. Pay-as-you-go or prepaid packages with built-in savings. ESA accepted. Group rates available." />
+  <link rel="canonical" href="https://allinclusivetutoring.com/pricing" />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --c-navy: #0d2340;
+      --c-gold: #e8a020;
+      --c-gold-light: #f5c96a;
+      --c-teal: #1d9e75;
+      --c-white: #fffef9;
+      --f-body: 'DM Sans', sans-serif;
+      --f-heading: 'Playfair Display', serif;
+    }
+    
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--f-body); background: var(--c-white); color: #333; line-height: 1.6; }
+    h1, h2, h3, h4, h5, h6 { font-family: var(--f-heading); color: var(--c-navy); }
+    a { text-decoration: none; color: inherit; }
+    
+    /* NAV */
+    nav { background: var(--c-navy); color: var(--c-white); padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; flex-wrap: wrap; gap: 1rem; }
+    .nav-row-top { display: flex; align-items: center; gap: 2rem; flex: 1; }
+    .nav-logo a { font-family: var(--f-heading); font-size: 1.2rem; font-weight: 700; color: var(--c-gold-light); display: flex; flex-direction: column; line-height: 1.1; }
+    .nav-logo a span { font-family: var(--f-body); font-size: 0.8rem; font-weight: 400; color: var(--c-white); letter-spacing: 0.5px; }
+    .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+    .nav-links a { font-size: 0.95rem; font-weight: 500; transition: color 0.3s; }
+    .nav-links a:hover { color: var(--c-gold-light); }
+    .nav-row-cta .ait-cta-gold { background: var(--c-gold); color: var(--c-navy); padding: 0.6rem 1.2rem; border-radius: 4px; font-weight: 700; transition: background 0.3s, transform 0.2s; display: inline-block; }
+    .nav-row-cta .ait-cta-gold:hover { background: var(--c-gold-light); transform: translateY(-2px); }
+    
+    @media (max-width: 768px) {
+      .nav-row-top { flex-direction: column; align-items: flex-start; gap: 1rem; }
+      .nav-links { flex-wrap: wrap; gap: 1rem; }
+      nav { flex-direction: column; align-items: stretch; }
+      .nav-row-cta { text-align: center; }
+    }
+    
+    /* PAGE HEADER */
+    .page-header { background: linear-gradient(135deg, var(--c-navy) 0%, #153766 100%); color: var(--c-white); text-align: center; padding: 4rem 1rem 3rem; position: relative; overflow: hidden; }
+    .page-header h1 { color: var(--c-gold-light); font-size: 3rem; margin-bottom: 1rem; }
+    .page-header p { font-size: 1.2rem; max-width: 600px; margin: 0 auto; opacity: 0.9; }
+    .esa-badge { position: absolute; top: 1rem; right: 2rem; background: var(--c-teal); color: white; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: bold; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+    
+    /* MAIN CONTENT */
+    main { max-width: 1000px; margin: -2rem auto 4rem; padding: 0 1rem; position: relative; z-index: 10; }
+    
+    /* TRIAL CARD */
+    .trial-card { background: white; border-radius: 12px; padding: 2rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-left: 6px solid var(--c-gold); margin-bottom: 3rem; flex-wrap: wrap; }
+    .trial-content h2 { font-size: 1.8rem; margin-bottom: 0.5rem; }
+    .trial-content p { color: #555; }
+    .trial-price { text-align: right; }
+    .trial-price .price { font-size: 2.5rem; font-weight: 700; color: var(--c-teal); line-height: 1; margin-bottom: 0.5rem; }
+    .trial-price .label { font-size: 0.9rem; font-weight: bold; color: #888; text-transform: uppercase; }
+    .trial-cta { background: var(--c-teal); color: white; padding: 0.8rem 1.5rem; border-radius: 6px; font-weight: 700; display: inline-block; transition: background 0.3s; margin-top: 1rem; }
+    .trial-cta:hover { background: #167d5c; }
+    @media (max-width: 768px) { .trial-card { flex-direction: column; text-align: center; } .trial-price { text-align: center; } }
+    
+    /* CALCULATOR */
+    .calc-container { background: white; border-radius: 12px; box-shadow: 0 15px 40px rgba(13,35,64,0.1); overflow: hidden; }
+    
+    .calc-tabs { display: flex; background: #f0f4f8; }
+    .calc-tab { flex: 1; padding: 1.5rem; text-align: center; font-family: var(--f-heading); font-size: 1.4rem; font-weight: 600; cursor: pointer; color: #666; transition: all 0.3s; border-bottom: 3px solid transparent; }
+    .calc-tab.active { background: white; color: var(--c-navy); border-bottom-color: var(--c-teal); }
+    .calc-tab:hover:not(.active) { background: #e6edf4; }
+    
+    .calc-body { padding: 3rem 2rem; }
+    .calc-panel { display: none; animation: fadeIn 0.4s ease-out; }
+    .calc-panel.active { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    
+    .calc-row { display: flex; gap: 3rem; flex-wrap: wrap; }
+    .calc-controls { flex: 1; min-width: 300px; display: flex; flex-direction: column; gap: 1.5rem; }
+    .calc-results { flex: 0 0 350px; background: var(--c-navy); color: white; padding: 2rem; border-radius: 12px; display: flex; flex-direction: column; justify-content: center; position: relative; }
+    
+    .form-group { display: flex; flex-direction: column; gap: 0.5rem; }
+    .form-group label { font-weight: 600; color: var(--c-navy); font-size: 0.95rem; }
+    .input-wrap { position: relative; }
+    
+    select, input[type="number"] { width: 100%; padding: 0.8rem; border: 2px solid #e0e6ed; border-radius: 6px; font-family: var(--f-body); font-size: 1rem; color: #333; transition: border-color 0.3s; }
+    select:focus, input[type="number"]:focus { outline: none; border-color: var(--c-teal); }
+    
+    .radio-group { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .radio-btn { flex: 1; min-width: 80px; }
+    .radio-btn input { display: none; }
+    .radio-btn label { display: block; padding: 0.6rem 0.5rem; text-align: center; background: #f0f4f8; border: 2px solid #e0e6ed; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: all 0.2s; }
+    .radio-btn input:checked + label { background: rgba(29,158,117,0.1); border-color: var(--c-teal); color: var(--c-teal); }
+    
+    .tier-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 0.8rem; }
+    .tier-card { position: relative; border: 2px solid #e0e6ed; border-radius: 8px; padding: 1rem 0.5rem; text-align: center; cursor: pointer; transition: all 0.2s; background: white; }
+    .tier-card:hover { border-color: #cbd5e1; }
+    .tier-card.selected { border-color: var(--c-gold); background: rgba(232,160,32,0.05); box-shadow: 0 4px 12px rgba(232,160,32,0.15); }
+    .tier-card .qty { font-size: 1.5rem; font-weight: 700; color: var(--c-navy); margin-bottom: 0.2rem; line-height: 1; }
+    .tier-card .unit { font-size: 0.8rem; color: #666; font-weight: 500; }
+    .tier-badge { position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: var(--c-gold); color: var(--c-navy); font-size: 0.7rem; font-weight: 700; padding: 2px 8px; border-radius: 10px; white-space: nowrap; }
+    
+    .results-val { font-size: 3rem; font-weight: 700; color: var(--c-gold-light); line-height: 1; margin: 0.5rem 0 1.5rem; font-family: var(--f-heading); }
+    .results-sub { display: flex; justify-content: space-between; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1rem; margin-bottom: 0.5rem; }
+    .results-sub div { display: flex; flex-direction: column; }
+    .results-sub .val { font-size: 1.2rem; font-weight: 700; color: white; }
+    .results-sub .lbl { font-size: 0.8rem; color: rgba(255,255,255,0.6); text-transform: uppercase; font-weight: 600; }
+    .group-saving { margin-top: 1rem; background: rgba(29,158,117,0.2); padding: 0.8rem; border-radius: 6px; font-size: 0.85rem; color: #a7f3d0; border-left: 3px solid var(--c-teal); }
+    
+    /* INFO SECTION */
+    .info-section { margin: 4rem auto; max-width: 900px; padding: 0 1rem; }
+    .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+    .info-box h3 { margin-bottom: 1rem; font-size: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
+    .info-box p { color: #555; margin-bottom: 1rem; }
+    @media (max-width: 768px) { .info-grid { grid-template-columns: 1fr; gap: 2rem; } }
+    
+    /* FOOTER */
+    footer { background: var(--c-navy); color: rgba(255,255,255,0.7); padding: 4rem 2rem 2rem; text-align: center; }
+    .footer-logo { font-family: var(--f-heading); font-size: 1.5rem; color: var(--c-gold-light); margin-bottom: 1rem; }
+    .footer-logo span { display: block; font-family: var(--f-body); font-size: 0.9rem; color: rgba(255,255,255,0.5); margin-top: 0.5rem; font-weight: 400; }
+  </style>
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "PriceSpecification",
+    "price": "18.33",
+    "priceCurrency": "USD",
+    "unitText": "HOUR",
+    "description": "Base rate for virtual tutoring services"
+  }
+  </script>
+</head>
+<body>
+
+<nav>
+  <div class="nav-row-top">
+    <div class="nav-logo"><a href="/">All Inclusive Tutoring <span>Solutions LLC</span></a></div>
+    <ul class="nav-links">
+      <li><a href="/services.html">Services</a></li>
+      <li><a href="/pricing.html" style="color:#f5c96a;">Pricing</a></li>
+      <li><a href="/resources.html">Resources</a></li>
+      <li><a href="/why-choose-us.html">About</a></li>
+      <li><a href="/account.html">Parent Portal</a></li>
+    </ul>
+  </div>
+  <div class="nav-row-cta">
+    <a href="https://calendly.com/allinclusivetutoring" target="_blank" class="ait-cta-gold">Book Free Consultation &rarr;</a>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="esa-badge">ESA Accepted</div>
+  <h1>Transparent, Flexible Pricing</h1>
+  <p>Exceptional virtual tutoring starting at just $9.17 per session. Choose pay-as-you-go or save with prepaid packages.</p>
+</div>
+
+<main>
+  
+  <div class="trial-card">
+    <div class="trial-content">
+      <h2>90-Minute Introductory Trial</h2>
+      <p>Experience our approach before committing. Two 45-minute sessions customized for your student.</p>
+      <a href="https://calendly.com/allinclusivetutoring" target="_blank" class="trial-cta">Book Trial Package</a>
+    </div>
+    <div class="trial-price">
+      <div class="price">$27.50</div>
+      <div class="label">Total Price</div>
+    </div>
+  </div>
+
+  <div class="calc-container" id="calculator">
+    <div class="calc-tabs">
+      <div class="calc-tab active" data-tab="payg">Pay As You Go</div>
+      <div class="calc-tab" data-tab="prepaid">Prepaid Packages</div>
+    </div>
+    
+    <div class="calc-body">
+      
+      <!-- PAY AS YOU GO PANEL -->
+      <div class="calc-panel active" id="panel-payg">
+        <div class="calc-row">
+          <div class="calc-controls">
+            
+            <div class="form-group">
+              <label>Session Length</label>
+              <div class="radio-group">
+                <div class="radio-btn">
+                  <input type="radio" name="payg-length" id="pl-30" value="30" checked>
+                  <label for="pl-30">30 min</label>
+                </div>
+                <div class="radio-btn">
+                  <input type="radio" name="payg-length" id="pl-60" value="60">
+                  <label for="pl-60">60 min</label>
+                </div>
+                <div class="radio-btn">
+                  <input type="radio" name="payg-length" id="pl-90" value="90">
+                  <label for="pl-90">90 min</label>
+                </div>
+                <div class="radio-btn">
+                  <input type="radio" name="payg-length" id="pl-120" value="120">
+                  <label for="pl-120">120 min</label>
+                </div>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label>Number of Sessions</label>
+              <input type="number" id="payg-qty" value="1" min="1" max="52">
+            </div>
+            
+            <div class="form-group">
+              <label>Group Size (Share the cost!)</label>
+              <select id="payg-group">
+                <option value="1">1 Student</option>
+                <option value="2">2 Students</option>
+                <option value="3">3 Students</option>
+                <option value="4">4 Students</option>
+              </select>
+            </div>
+            
+          </div>
+          
+          <div class="calc-results">
+            <div style="font-weight:600; text-transform:uppercase; font-size:0.85rem; letter-spacing:1px; color:rgba(255,255,255,0.7);">Estimated Total</div>
+            <div class="results-val" id="payg-total">$9.17</div>
+            
+            <div class="results-sub">
+              <div>
+                <span class="lbl">Per Session</span>
+                <span class="val" id="payg-persession">$9.17</span>
+              </div>
+              <div id="payg-perstudent-wrap" style="display:none; text-align:right;">
+                <span class="lbl">Per Student</span>
+                <span class="val" style="color:var(--c-teal);" id="payg-perstudent">$9.17</span>
+              </div>
+            </div>
+            
+            <div class="group-saving" id="payg-group-msg" style="display:none;">
+              Split with up to 4 students! Total rate remains the same.
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- PREPAID PANEL -->
+      <div class="calc-panel" id="panel-prepaid">
+        <div class="calc-row">
+          <div class="calc-controls">
+            
+            <div class="form-group">
+              <label>Package Type</label>
+              <div class="radio-group" style="margin-bottom:1rem;">
+                <div class="radio-btn">
+                  <input type="radio" name="prep-type" id="pt-30m" value="30m" checked>
+                  <label for="pt-30m">30-Min Sessions</label>
+                </div>
+                <div class="radio-btn">
+                  <input type="radio" name="prep-type" id="pt-hr" value="hr">
+                  <label for="pt-hr">Hours</label>
+                </div>
+              </div>
+              
+              <!-- 30m Tiers -->
+              <div class="tier-cards" id="tiers-30m">
+                <div class="tier-card" data-val="1">
+                  <div class="qty">1</div><div class="unit">Session</div>
+                </div>
+                <div class="tier-card" data-val="4">
+                  <div class="qty">4</div><div class="unit">Sessions</div>
+                </div>
+                <div class="tier-card selected" data-val="5">
+                  <div class="tier-badge">BEST RATE</div>
+                  <div class="qty">5</div><div class="unit">Sessions</div>
+                </div>
+                <div class="tier-card" data-val="6">
+                  <div class="qty">6</div><div class="unit">Sessions</div>
+                </div>
+                <div class="tier-card" data-val="7">
+                  <div class="qty">7</div><div class="unit">Sessions</div>
+                </div>
+              </div>
+              
+              <!-- Hour Tiers -->
+              <div class="tier-cards" id="tiers-hr" style="display:none;">
+                <div class="tier-card" data-val="5">
+                  <div class="tier-badge">VALUE</div>
+                  <div class="qty">5</div><div class="unit">Hours</div>
+                </div>
+                <div class="tier-card" data-val="10">
+                  <div class="tier-badge">BEST VALUE</div>
+                  <div class="qty">10</div><div class="unit">Hours</div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="form-group" style="margin-top:1rem;">
+              <label>Group Size (Share the cost!)</label>
+              <select id="prep-group">
+                <option value="1">1 Student</option>
+                <option value="2">2 Students</option>
+                <option value="3">3 Students</option>
+                <option value="4">4 Students</option>
+              </select>
+            </div>
+            
+          </div>
+          
+          <div class="calc-results">
+            <div style="font-weight:600; text-transform:uppercase; font-size:0.85rem; letter-spacing:1px; color:rgba(255,255,255,0.7);">Package Total</div>
+            <div class="results-val" id="prep-total">$43.08</div>
+            
+            <div class="results-sub">
+              <div>
+                <span class="lbl" id="prep-rate-lbl">Per Session</span>
+                <span class="val" id="prep-rate-val">$8.62</span>
+              </div>
+              <div id="prep-perstudent-wrap" style="display:none; text-align:right;">
+                <span class="lbl">Per Student Total</span>
+                <span class="val" style="color:var(--c-teal);" id="prep-perstudent">$43.08</span>
+              </div>
+            </div>
+            
+            <div class="group-saving" id="prep-group-msg" style="display:none;">
+              Split with up to 4 students! Rate remains the same.
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+  <div class="info-section">
+    <div class="info-grid">
+      <div class="info-box">
+        <h3><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--c-teal)" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> Flexible Scheduling</h3>
+        <p>Book sessions that fit your schedule. Packages don't expire quickly, giving you the flexibility to use them when you need them most, whether it's for weekly support or test prep crunches.</p>
+      </div>
+      <div class="info-box">
+        <h3><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--c-gold)" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg> Group Rates Explained</h3>
+        <p>We do not charge per student for small groups (up to 4 students). Bring siblings or friends! A $43.08 package split among 4 students is just $10.77 per student total.</p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-logo">All Inclusive Tutoring Solutions LLC<span>Virtual Tutoring &middot; STEM &middot; ACT Prep &middot; Homeschool Support &middot; ESA Accepted</span></div>
+  <div style="width:100%;border-top:1px solid rgba(255,255,255,0.08);margin:1.5rem 0;padding-top:1.5rem;"><p style="font-size:0.78rem;color:rgba(255,255,255,0.45);line-height:1.7;max-width:800px;margin:0 auto;text-align:center;"><strong style="color:rgba(255,255,255,0.6);">Nondiscrimination Statement:</strong> All Inclusive Tutoring Solutions does not discriminate on the basis of race, color, religion, national origin, ancestry, disability, age, marital status, sex, sexual orientation, gender identity or expression, or any other characteristic protected by applicable federal, state, or local law.</p></div>
+  <p>&copy; 2025 All Inclusive Tutoring Solutions LLC. All rights reserved. &middot; <a href="/nondiscrimination.html" style="color:rgba(255,255,255,0.4);text-decoration:none;">Nondiscrimination Policy</a> &middot; <a href="/terms.html" style="color:rgba(255,255,255,0.4);text-decoration:none;">Terms &amp; Conditions</a></p>
+</footer>
+
+<script>
+  // Data
+  const rates = {
+    payg: {
+      30: 9.17,
+      60: 18.33,
+      90: 27.50,
+      120: 36.66
+    },
+    prep30: {
+      1: 9.17,
+      4: 35.19,
+      5: 43.08,
+      6: 52.79,
+      7: 62.23
+    },
+    prephr: {
+      5: 87.98,
+      10: 177.80
+    }
+  };
+
+  // Format currency
+  const formatCur = (num) => '$' + num.toFixed(2);
+
+  // Tabs logic
+  const tabs = document.querySelectorAll('.calc-tab');
+  const panels = document.querySelectorAll('.calc-panel');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      panels.forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+    });
+  });
+
+  // PAYG Logic
+  const paygLenRadios = document.querySelectorAll('input[name="payg-length"]');
+  const paygQtyInput = document.getElementById('payg-qty');
+  const paygGroupSel = document.getElementById('payg-group');
+  
+  const paygTotalEl = document.getElementById('payg-total');
+  const paygPerSessEl = document.getElementById('payg-persession');
+  const paygPerStudWrap = document.getElementById('payg-perstudent-wrap');
+  const paygPerStudEl = document.getElementById('payg-perstudent');
+  const paygGroupMsg = document.getElementById('payg-group-msg');
+
+  function updatePAYG() {
+    const len = document.querySelector('input[name="payg-length"]:checked').value;
+    const qty = parseInt(paygQtyInput.value) || 1;
+    const group = parseInt(paygGroupSel.value) || 1;
+    
+    const ratePerSess = rates.payg[len];
+    const total = ratePerSess * qty;
+    
+    paygTotalEl.textContent = formatCur(total);
+    paygPerSessEl.textContent = formatCur(ratePerSess);
+    
+    if (group > 1) {
+      paygPerStudWrap.style.display = 'block';
+      paygGroupMsg.style.display = 'block';
+      paygPerStudEl.textContent = formatCur(total / group);
+    } else {
+      paygPerStudWrap.style.display = 'none';
+      paygGroupMsg.style.display = 'none';
+    }
+  }
+
+  paygLenRadios.forEach(r => r.addEventListener('change', updatePAYG));
+  paygQtyInput.addEventListener('input', updatePAYG);
+  paygGroupSel.addEventListener('change', updatePAYG);
+
+
+  // PREPAID Logic
+  const prepTypeRadios = document.querySelectorAll('input[name="prep-type"]');
+  const tiers30m = document.getElementById('tiers-30m');
+  const tiersHr = document.getElementById('tiers-hr');
+  const prepGroupSel = document.getElementById('prep-group');
+  
+  const prepTotalEl = document.getElementById('prep-total');
+  const prepRateLbl = document.getElementById('prep-rate-lbl');
+  const prepRateVal = document.getElementById('prep-rate-val');
+  const prepPerStudWrap = document.getElementById('prep-perstudent-wrap');
+  const prepPerStudEl = document.getElementById('prep-perstudent');
+  const prepGroupMsg = document.getElementById('prep-group-msg');
+
+  let activeTierCards = tiers30m.querySelectorAll('.tier-card');
+  let selectedPrepVal = 5;
+
+  function setTierSelection(container) {
+    const cards = container.querySelectorAll('.tier-card');
+    cards.forEach(c => {
+      c.addEventListener('click', () => {
+        cards.forEach(x => x.classList.remove('selected'));
+        c.classList.add('selected');
+        selectedPrepVal = parseInt(c.dataset.val);
+        updatePrep();
+      });
+    });
+  }
+  setTierSelection(tiers30m);
+  setTierSelection(tiersHr);
+
+  prepTypeRadios.forEach(r => {
+    r.addEventListener('change', (e) => {
+      if (e.target.value === '30m') {
+        tiers30m.style.display = 'grid';
+        tiersHr.style.display = 'none';
+        selectedPrepVal = 5; 
+        tiers30m.querySelectorAll('.tier-card').forEach(c => c.classList.remove('selected'));
+        tiers30m.querySelector('[data-val="5"]').classList.add('selected');
+        prepRateLbl.textContent = 'Per Session';
+      } else {
+        tiers30m.style.display = 'none';
+        tiersHr.style.display = 'grid';
+        selectedPrepVal = 10;
+        tiersHr.querySelectorAll('.tier-card').forEach(c => c.classList.remove('selected'));
+        tiersHr.querySelector('[data-val="10"]').classList.add('selected');
+        prepRateLbl.textContent = 'Per Hour';
+      }
+      updatePrep();
+    });
+  });
+  
+  prepGroupSel.addEventListener('change', updatePrep);
+
+  function updatePrep() {
+    const type = document.querySelector('input[name="prep-type"]:checked').value;
+    const group = parseInt(prepGroupSel.value) || 1;
+    
+    let total = 0;
+    let rate = 0;
+    
+    if (type === '30m') {
+      total = rates.prep30[selectedPrepVal];
+      rate = total / selectedPrepVal;
+    } else {
+      total = rates.prephr[selectedPrepVal];
+      rate = total / selectedPrepVal;
+    }
+    
+    prepTotalEl.textContent = formatCur(total);
+    prepRateVal.textContent = formatCur(rate);
+    
+    if (group > 1) {
+      prepPerStudWrap.style.display = 'block';
+      prepGroupMsg.style.display = 'block';
+      prepPerStudEl.textContent = formatCur(total / group);
+    } else {
+      prepPerStudWrap.style.display = 'none';
+      prepGroupMsg.style.display = 'none';
+    }
+  }
+
+  // Init
+  updatePAYG();
+  updatePrep();
+</script>
+
+</body>
+</html>

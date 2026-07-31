@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Self-Paced Courses | Social-Emotional Learning for K-12 | All Inclusive Tutoring</title>
+    <meta name="description" content="Expert-designed SEL and executive function courses for K-12 students. Age-tiered lessons, downloadable worksheets, and lifetime access. Starting at $29.">
+    <link rel="canonical" href="https://allinclusivetutoring.com/courses">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        :root {
+            --navy: #0d2340;
+            --gold: #e8a020;
+            --gold-light: #f5c96a;
+            --teal: #1d9e75;
+            --warm-white: #fffef9;
+            --text-dark: #333;
+        }
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: var(--warm-white);
+            color: var(--text-dark);
+            margin: 0;
+            padding: 0;
+        }
+        h1, h2, h3, h4, .playfair {
+            font-family: 'Playfair Display', serif;
+        }
+        nav {
+            background-color: var(--navy);
+            color: white;
+            padding: 1rem 2rem;
+        }
+        .nav-row-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-logo a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        .nav-logo span {
+            font-size: 1rem;
+            font-weight: 400;
+        }
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: var(--gold-light);
+        }
+        .nav-row-cta {
+            margin-top: 1rem;
+            text-align: right;
+        }
+        .ait-cta-gold {
+            background-color: var(--gold);
+            color: var(--navy);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: background-color 0.3s;
+        }
+        .ait-cta-gold:hover {
+            background-color: var(--gold-light);
+        }
+        .hero {
+            text-align: center;
+            padding: 4rem 2rem;
+            background-color: var(--navy);
+            color: white;
+        }
+        .hero .eyebrow {
+            color: var(--gold-light);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            margin-top: 0;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .courses-container {
+            max-width: 1000px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+        .course-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            border: 2px solid var(--gold);
+            margin-bottom: 4rem;
+        }
+        @media(min-width: 768px) {
+            .course-card {
+                flex-direction: row;
+            }
+        }
+        .course-info {
+            padding: 3rem;
+            flex: 1;
+        }
+        .badge {
+            background: var(--navy);
+            color: var(--gold-light);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 700;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+        .course-title {
+            font-size: 2rem;
+            margin-top: 0;
+            color: var(--navy);
+        }
+        .course-desc {
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+        .course-includes {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 2rem;
+        }
+        .course-includes li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        .course-includes li::before {
+            content: '✓';
+            color: var(--teal);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        .course-buy {
+            background: var(--warm-white);
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-left: 1px solid #eee;
+            text-align: center;
+        }
+        .price {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 0.5rem;
+        }
+        .subtext {
+            color: #666;
+            font-size: 0.875rem;
+            margin-bottom: 2rem;
+        }
+        .btn-enroll {
+            background-color: var(--teal);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+        .btn-enroll:hover {
+            background-color: #157e5d;
+        }
+        .btn-enroll:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        .coming-soon-section {
+            text-align: center;
+            margin: 4rem 0;
+        }
+        .coming-soon-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .coming-soon-card {
+            background: #f5f5f5;
+            padding: 2rem;
+            border-radius: 8px;
+            color: #888;
+        }
+        .badge-soon {
+            background: #ccc;
+            color: #555;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+        footer {
+            background-color: var(--navy);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+        .footer-logo {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        .footer-logo span {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 400;
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-row-top">
+    <div class="nav-logo"><a href="/">All Inclusive Tutoring <span>Solutions LLC</span></a></div>
+    <ul class="nav-links">
+      <li><a href="/services.html">Services</a></li>
+      <li><a href="/pricing.html">Pricing</a></li>
+      <li><a href="/resources.html">Resources</a></li>
+      <li><a href="/courses.html" style="color:#f5c96a;">Courses</a></li>
+      <li><a href="/account.html">Parent Portal</a></li>
+    </ul>
+  </div>
+  <div class="nav-row-cta">
+    <a href="https://calendly.com/allinclusivetutoring" target="_blank" class="ait-cta-gold">Book Free Consultation &rarr;</a>
+  </div>
+</nav>
+
+<section class="hero">
+    <div class="eyebrow">Online Courses</div>
+    <h1>Expert-Designed Courses for Every Learner</h1>
+    <p>Self-paced, age-tiered lessons with lifetime access.</p>
+</section>
+
+<div class="courses-container">
+    <div class="course-card">
+        <div class="course-info">
+            <div class="badge">PILOT COURSE — LAUNCH PRICE</div>
+            <h2 class="course-title">Social-Emotional Learning: A Tiered Framework for Student Success</h2>
+            <p class="course-desc">A 5-module self-paced course designed for K–12 students. Each module covers a core SEL skill with three age-tiered lesson tracks (K-5, Middle School, High School) — so the same course works for a 7-year-old and a 16-year-old. Includes downloadable worksheets and reflection activities for every lesson.</p>
+            <ul class="course-includes">
+                <li>5 core SEL modules (Self-Awareness, Self-Regulation, Social Awareness, Relationship Skills, Decision-Making)</li>
+                <li>3 age tiers per module (K-5, Middle School, High School)</li>
+                <li>Downloadable worksheets for every lesson</li>
+                <li>Reflection prompts and activity guides</li>
+                <li>Lifetime access — revisit anytime</li>
+            </ul>
+        </div>
+        <div class="course-buy">
+            <div class="price">$29</div>
+            <div class="subtext">Less than 2 tutoring sessions. Yours forever.</div>
+            <button id="enrollBtn" class="btn-enroll" onclick="handleEnroll()">Enroll Now — $29</button>
+        </div>
+    </div>
+
+    <div class="coming-soon-section">
+        <h2>More courses coming soon</h2>
+        <div class="coming-soon-grid">
+            <div class="coming-soon-card">
+                <div class="badge-soon">Coming Soon</div>
+                <h3>Executive Function Mastery</h3>
+            </div>
+            <div class="coming-soon-card">
+                <div class="badge-soon">Coming Soon</div>
+                <h3>STEM Foundations</h3>
+            </div>
+            <div class="coming-soon-card">
+                <div class="badge-soon">Coming Soon</div>
+                <h3>College Readiness Prep</h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+  <div class="footer-logo">All Inclusive Tutoring Solutions LLC<span>Virtual Tutoring &middot; STEM &middot; ACT Prep &middot; Homeschool Support &middot; ESA Accepted</span></div>
+  <p>&copy; 2025 All Inclusive Tutoring Solutions LLC. All rights reserved. &middot; <a href="/terms.html" style="color:rgba(255,255,255,0.4);text-decoration:none;">Terms</a></p>
+</footer>
+
+<script>
+const SUPABASE_URL = 'https://hzmxktlkrkohxokzdsvw.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh6bXhrdGxrcmtvaHhva3pkc3Z3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODUxMTMzOTgsImV4cCI6MjEwMDY4OTM5OH0.CnW4a62P5VQgX9kFizMKvtW0NQzdGsnITsEimiFevHs';
+
+// ---------------------------------------------------------------
+// IMPORTANT: After running seed_courses.sql in Supabase SQL Editor,
+// copy the returned UUID from the "id" column and paste it below.
+// ---------------------------------------------------------------
+const SEL_COURSE_ID = '6d278650-a784-4304-9b62-049be8190ff6';
+
+const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+async function handleEnroll() {
+  // 1. Check login
+  const { data: { session } } = await supabase.auth.getSession();
+  if (!session) {
+    window.location.href = '/account.html?redirect=courses';
+    return;
+  }
+
+  // 2. Check existing enrollment (fast local check before hitting Stripe)
+  const { data: enrollment } = await supabase
+    .from('enrollments')
+    .select('id')
+    .eq('profile_id', session.user.id)
+    .eq('course_id', SEL_COURSE_ID)
+    .maybeSingle();
+
+  if (enrollment) {
+    window.location.href = '/course-player.html';
+    return;
+  }
+
+  const btn = document.getElementById('enrollBtn');
+  btn.textContent = 'Redirecting to checkout...';
+  btn.disabled = true;
+
+  try {
+    // 3. Call the Netlify function with the JWT as a Bearer token.
+    //    The function verifies it server-side — we never pass userId in the body.
+    const res = await fetch('/.netlify/functions/create-checkout', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${session.access_token}`
+      },
+      body: JSON.stringify({ courseId: SEL_COURSE_ID })
+    });
+
+    const data = await res.json();
+
+    if (data.alreadyEnrolled) {
+      window.location.href = '/course-player.html';
+      return;
+    }
+    if (data.error) throw new Error(data.error);
+
+    // 4. Redirect to Stripe hosted checkout
+    window.location.href = data.url;
+
+  } catch (e) {
+    console.error('Checkout error:', e.message);
+    btn.textContent = 'Enroll Now — $29';
+    btn.disabled = false;
+    alert('Something went wrong. Please try again or contact hello@allinclusivetutoring.com.');
+  }
+}
+</script>
+
+</body>
+</html>

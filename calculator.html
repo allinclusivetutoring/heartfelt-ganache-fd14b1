@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ESA Scholarship Calculator | Estimate Your State Funding Coverage</title>
+  <meta name="description" content="Calculate how much your state's Education Savings Account (ESA) covers for expert virtual tutoring. Free tool for families in Arizona, Florida, Utah, and 9 other states.">
+  <link rel="canonical" href="https://allinclusivetutoring.com/calculator">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #0d2340;
+      --gold: #e8a020;
+      --gold-light: #f5c96a;
+      --teal: #1d9e75;
+      --warm-white: #fffef9;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background-color: var(--warm-white);
+      color: #333;
+      line-height: 1.6;
+    }
+    h1, h2, h3, h4, h5, h6, .playfair {
+      font-family: 'Playfair Display', serif;
+      color: var(--navy);
+    }
+    nav {
+      background-color: var(--navy);
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .nav-row-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .nav-logo a {
+      color: white;
+      text-decoration: none;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    .nav-logo span {
+      font-weight: normal;
+      font-size: 1rem;
+      opacity: 0.8;
+    }
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+    }
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover {
+      color: var(--gold-light);
+    }
+    .nav-row-cta {
+      text-align: right;
+    }
+    .ait-cta-gold {
+      background-color: var(--gold);
+      color: var(--navy);
+      padding: 0.5rem 1rem;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+      display: inline-block;
+    }
+    .ait-cta-gold:hover {
+      background-color: var(--gold-light);
+    }
+    footer {
+      background-color: var(--navy);
+      color: white;
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+    .footer-logo {
+      font-size: 1.25rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+    .footer-logo span {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: normal;
+      opacity: 0.8;
+      margin-top: 0.5rem;
+    }
+    .hero {
+      text-align: center;
+      padding: 5rem 2rem 3rem;
+      background-color: var(--warm-white);
+    }
+    .hero-eyebrow {
+      color: var(--teal);
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+    }
+    .hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+    }
+    .hero-subtitle {
+      font-size: 1.25rem;
+      max-width: 800px;
+      margin: 0 auto;
+      color: #555;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    
+    /* Calculator UI */
+    .calc-container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 15px 50px rgba(0,0,0,0.08);
+      padding: 3rem;
+      margin-bottom: 4rem;
+    }
+    .calc-step {
+      margin-bottom: 2.5rem;
+    }
+    .calc-step h3 {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1.2rem;
+      color: var(--navy);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .calc-step h3 span {
+      background: var(--teal);
+      color: white;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      font-weight: bold;
+    }
+    select {
+      width: 100%;
+      padding: 1.2rem;
+      border: 2px solid #eaeaea;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 1.05rem;
+      background-color: #fafafa;
+      color: #333;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      appearance: none;
+      background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23333%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.4-12.8z%22%2F%3E%3C%2Fsvg%3E");
+      background-repeat: no-repeat, repeat;
+      background-position: right .7em top 50%, 0 0;
+      background-size: .65em auto, 100%;
+    }
+    select:focus {
+      outline: none;
+      border-color: var(--teal);
+      background-color: white;
+      box-shadow: 0 0 0 3px rgba(29, 158, 117, 0.2);
+    }
+    .results-panel {
+      background: var(--navy);
+      color: white;
+      padding: 2.5rem;
+      border-radius: 12px;
+      margin-top: 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .results-panel::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: var(--gold);
+    }
+    .results-panel h3 {
+      color: var(--gold-light);
+      margin-bottom: 2rem;
+      font-size: 1.8rem;
+    }
+    .res-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .res-item {
+      background: rgba(255,255,255,0.06);
+      padding: 1.5rem;
+      border-radius: 10px;
+    }
+    .res-label {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+    .res-val {
+      font-size: 2rem;
+      font-weight: bold;
+      font-family: 'Playfair Display', serif;
+    }
+    .progress-container {
+      background: rgba(255,255,255,0.15);
+      height: 10px;
+      border-radius: 5px;
+      margin-top: 0.75rem;
+      overflow: hidden;
+    }
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--teal), #2bcf9a);
+      width: 0%;
+      transition: width 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+    .highlight-callout {
+      background: rgba(29, 158, 117, 0.2);
+      border: 1px solid var(--teal);
+      padding: 1.5rem;
+      border-radius: 10px;
+      text-align: center;
+      font-size: 1.2rem;
+      color: white;
+    }
+    .highlight-callout span {
+      color: var(--gold-light);
+      font-weight: bold;
+    }
+    
+    .lead-capture {
+      border: 2px solid var(--gold);
+      padding: 2.5rem;
+      border-radius: 12px;
+      text-align: center;
+      margin-top: 4rem;
+      background: white;
+      box-shadow: 0 10px 30px rgba(232, 160, 32, 0.1);
+    }
+    .lead-capture h3 {
+      font-size: 2rem;
+      margin-bottom: 0.75rem;
+    }
+    .lead-capture p {
+      color: #555;
+      margin-bottom: 2rem;
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .lead-form {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .lead-form input {
+      padding: 1.2rem;
+      border: 2px solid #eaeaea;
+      border-radius: 8px;
+      font-size: 1rem;
+      flex: 1;
+      min-width: 250px;
+      font-family: inherit;
+    }
+    .lead-form input:focus {
+      outline: none;
+      border-color: var(--teal);
+    }
+    .lead-form button {
+      padding: 1.2rem 2.5rem;
+      background: var(--navy);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.05rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: inherit;
+    }
+    .lead-form button:hover {
+      background: var(--teal);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(29, 158, 117, 0.3);
+    }
+    .disclaimer {
+      text-align: center;
+      font-size: 0.85rem;
+      color: #888;
+      margin-top: 2rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    @media (max-width: 768px) {
+      .nav-row-top {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+      }
+      .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .nav-row-cta {
+        text-align: center;
+      }
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      .res-grid {
+        grid-template-columns: 1fr;
+      }
+      .calc-container {
+        padding: 1.5rem;
+      }
+      .lead-capture {
+        padding: 1.5rem;
+      }
+      .lead-form {
+        flex-direction: column;
+      }
+      .lead-form button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-row-top">
+      <div class="nav-logo"><a href="/">All Inclusive Tutoring <span>Solutions LLC</span></a></div>
+      <ul class="nav-links">
+        <li><a href="/services.html">Services</a></li>
+        <li><a href="/pricing.html">Pricing</a></li>
+        <li><a href="/resources.html">Resources</a></li>
+        <li><a href="/courses.html">Courses</a></li>
+        <li><a href="/account.html">Parent Portal</a></li>
+      </ul>
+    </div>
+    <div class="nav-row-cta">
+      <a href="https://calendly.com/allinclusivetutoring" target="_blank" class="ait-cta-gold">Book Free Consultation &rarr;</a>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <div class="hero-eyebrow">Free Tool</div>
+      <h1>Estimate Your ESA Tutoring Coverage</h1>
+      <p class="hero-subtitle">Enter your state and tutoring needs below. We'll calculate how far your state funds go — and how many sessions you could book.</p>
+    </section>
+
+    <div class="container">
+      <div class="calc-container">
+        <div class="calc-step">
+          <h3><span>1</span> Select Your State</h3>
+          <select id="state">
+            <option value="az">Arizona (AZ ESA) — ~$6,400</option>
+            <option value="fl">Florida (Step Up FES-UA) — ~$8,200</option>
+            <option value="la">Louisiana (GATOR) — ~$5,800</option>
+            <option value="in">Indiana (Indiana ESA) — ~$5,500</option>
+            <option value="ia">Iowa (Students First) — ~$5,600</option>
+            <option value="mt">Montana (Montana ESA) — ~$5,200</option>
+            <option value="nh">New Hampshire (EFA) — ~$3,400</option>
+            <option value="nc">North Carolina (NC ESA+) — ~$6,800</option>
+            <option value="sc">South Carolina (ESTF) — ~$6,700</option>
+            <option value="ut">Utah (Utah Fits All) — ~$7,059</option>
+            <option value="wv">West Virginia (Hope) — ~$4,600</option>
+            <option value="wy">Wyoming (WY ESA) — ~$5,000</option>
+          </select>
+        </div>
+
+        <div class="calc-step">
+          <h3><span>2</span> Sessions per week</h3>
+          <select id="sessions">
+            <option value="1">1 Session per week</option>
+            <option value="2" selected>2 Sessions per week</option>
+            <option value="3">3 Sessions per week</option>
+            <option value="4">4+ Sessions per week</option>
+          </select>
+        </div>
+
+        <div class="calc-step">
+          <h3><span>3</span> Preferred session length</h3>
+          <select id="length">
+            <option value="30">30 min ($9.17/session)</option>
+            <option value="60">60 min ($18.33/session)</option>
+            <option value="90" selected>90 min ($27.50/session)</option>
+          </select>
+        </div>
+
+        <div class="results-panel">
+          <h3 class="playfair">Your Estimated Coverage</h3>
+          <div class="res-grid">
+            <div class="res-item">
+              <span class="res-label">Annual ESA Allocation</span>
+              <div class="res-val" id="res-allocation">$6,400</div>
+            </div>
+            <div class="res-item">
+              <span class="res-label">Annual Tutoring Cost (50 wks)</span>
+              <div class="res-val" id="res-cost">$2,750</div>
+            </div>
+            <div class="res-item" style="grid-column: 1 / -1;">
+              <span class="res-label">Estimated ESA Coverage (<span id="res-coverage-text">100% covered</span>)</span>
+              <div class="progress-container">
+                <div class="progress-bar" id="res-coverage-bar"></div>
+              </div>
+            </div>
+            <div class="res-item">
+              <span class="res-label">Max Sessions (Full Allocation)</span>
+              <div class="res-val" id="res-sessions">232</div>
+            </div>
+            <div class="res-item">
+              <span class="res-label">Out-of-Pocket Estimate</span>
+              <div class="res-val" id="res-oop">$0</div>
+            </div>
+          </div>
+          <div class="highlight-callout">
+            With ESA funds, you could afford up to <span id="res-callout-sessions">2</span> sessions per week all year at no out-of-pocket cost!
+          </div>
+        </div>
+
+        <div class="lead-capture">
+          <h3 class="playfair">Want Your Personalized State Funding Guide?</h3>
+          <p>Enter your email and we'll send you a step-by-step guide for your specific state program, including how to set up ClassWallet or Odyssey and submit your first tutoring claim.</p>
+          <form class="lead-form" name="esa-guide-request" method="POST" data-netlify="true" action="/success.html">
+            <input type="hidden" name="form-name" value="esa-guide-request">
+            <input type="hidden" id="hidden-state" name="state" value="Arizona (AZ ESA)">
+            <input type="text" name="name" placeholder="Parent Name" required>
+            <input type="email" name="email" placeholder="Email Address" required>
+            <button type="submit">Send My Free State Guide &rarr;</button>
+          </form>
+        </div>
+
+        <p class="disclaimer">Allocations are estimates based on publicly available program data and may vary. Contact your state's Department of Education for exact figures.</p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-logo">All Inclusive Tutoring Solutions LLC<span>Virtual Tutoring &middot; STEM &middot; ACT Prep &middot; Homeschool Support &middot; ESA Accepted</span></div>
+    <div style="width:100%;border-top:1px solid rgba(255,255,255,0.08);margin:1.5rem 0;padding-top:1.5rem;">
+      <p style="font-size:0.78rem;color:rgba(255,255,255,0.45);line-height:1.7;max-width:800px;margin:0 auto;text-align:center;">
+        <strong style="color:rgba(255,255,255,0.6);">Nondiscrimination Statement:</strong> All Inclusive Tutoring Solutions does not discriminate on the basis of race, color, religion, national origin, ancestry, disability, age, marital status, sex, sexual orientation, gender identity or expression, or any other characteristic protected by applicable federal, state, or local law.
+      </p>
+    </div>
+    <p>&copy; 2025 All Inclusive Tutoring Solutions LLC. All rights reserved. &middot; <a href="/terms.html" style="color:rgba(255,255,255,0.4);text-decoration:none;">Terms</a></p>
+  </footer>
+
+  <script>
+    const stateData = {
+      az: { name: 'Arizona (AZ ESA)', allocation: 6400 },
+      fl: { name: 'Florida (Step Up FES-UA)', allocation: 8200 },
+      la: { name: 'Louisiana (GATOR)', allocation: 5800 },
+      in: { name: 'Indiana (Indiana ESA)', allocation: 5500 },
+      ia: { name: 'Iowa (Students First)', allocation: 5600 },
+      mt: { name: 'Montana (Montana ESA)', allocation: 5200 },
+      nh: { name: 'New Hampshire (EFA)', allocation: 3400 },
+      nc: { name: 'North Carolina (NC ESA+)', allocation: 6800 },
+      sc: { name: 'South Carolina (ESTF)', allocation: 6700 },
+      ut: { name: 'Utah (Utah Fits All)', allocation: 7059 },
+      wv: { name: 'West Virginia (Hope)', allocation: 4600 },
+      wy: { name: 'Wyoming (WY ESA)', allocation: 5000 }
+    };
+
+    const rates = {
+      30: 9.17,
+      60: 18.33,
+      90: 27.50
+    };
+
+    function calculate() {
+      const stateSelect = document.getElementById('state');
+      const stateVal = stateSelect.value;
+      const sessions = parseInt(document.getElementById('sessions').value);
+      const length = parseInt(document.getElementById('length').value);
+      
+      if(!stateVal) return;
+      
+      const allocation = stateData[stateVal].allocation;
+      const rate = rates[length];
+      const sessionCost = rate * sessions * 50;
+      
+      const coveragePercent = Math.min(100, (allocation / sessionCost) * 100);
+      const sessionsPossible = Math.floor(allocation / rate);
+      const outOfPocket = Math.max(0, sessionCost - allocation);
+      
+      document.getElementById('res-allocation').textContent = '$' + allocation.toLocaleString();
+      document.getElementById('res-cost').textContent = '$' + sessionCost.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+      document.getElementById('res-coverage-text').textContent = coveragePercent.toFixed(1) + '% covered';
+      document.getElementById('res-coverage-bar').style.width = coveragePercent + '%';
+      document.getElementById('res-sessions').textContent = sessionsPossible.toLocaleString();
+      document.getElementById('res-oop').textContent = '$' + outOfPocket.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+      document.getElementById('res-callout-sessions').textContent = sessions;
+      
+      document.getElementById('hidden-state').value = stateData[stateVal].name;
+    }
+
+    document.getElementById('state').addEventListener('change', calculate);
+    document.getElementById('sessions').addEventListener('change', calculate);
+    document.getElementById('length').addEventListener('change', calculate);
+
+    calculate();
+  </script>
+</body>
+</html>

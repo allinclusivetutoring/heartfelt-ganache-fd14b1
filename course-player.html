@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Player | All Inclusive Tutoring</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        :root {
+            --navy: #0d2340;
+            --gold: #e8a020;
+            --gold-light: #f5c96a;
+            --teal: #1d9e75;
+            --warm-white: #fffef9;
+            --text-dark: #333;
+        }
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: var(--warm-white);
+            color: var(--text-dark);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+        h1, h2, h3, h4, .playfair {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            width: 300px;
+            background-color: var(--navy);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            border-right: 1px solid rgba(255,255,255,0.1);
+            flex-shrink: 0;
+        }
+        .sidebar-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .sidebar-header h2 {
+            margin: 0;
+            font-size: 1.25rem;
+            color: var(--gold-light);
+        }
+        .sidebar-header a {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.875rem;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 0.5rem;
+        }
+        .sidebar-header a:hover {
+            color: white;
+        }
+        .tier-selector {
+            padding: 1rem 1.5rem;
+            background: rgba(0,0,0,0.2);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .tier-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: rgba(255,255,255,0.5);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        .tier-pills {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .tier-pill {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 0.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+        .tier-pill.active {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: var(--navy);
+            font-weight: 700;
+        }
+        .module-list {
+            padding: 1rem 0;
+        }
+        .module-item {
+            margin-bottom: 0.5rem;
+        }
+        .module-title {
+            padding: 0.75rem 1.5rem;
+            cursor: pointer;
+            font-weight: 700;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.2s;
+        }
+        .module-title:hover {
+            background: rgba(255,255,255,0.05);
+        }
+        .lesson-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            background: rgba(0,0,0,0.1);
+            display: none;
+        }
+        .module-item.open .lesson-list {
+            display: block;
+        }
+        .lesson-item {
+            padding: 0.75rem 1.5rem 0.75rem 2.5rem;
+            cursor: pointer;
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.8);
+            transition: all 0.2s;
+            border-left: 3px solid transparent;
+        }
+        .lesson-item:hover {
+            color: white;
+            background: rgba(255,255,255,0.05);
+        }
+        .lesson-item.active {
+            color: var(--gold-light);
+            border-left-color: var(--gold-light);
+            background: rgba(255,255,255,0.1);
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 2rem 4rem;
+        }
+        .content-wrapper {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .lesson-header {
+            margin-bottom: 2rem;
+        }
+        .lesson-title {
+            font-size: 2.5rem;
+            color: var(--navy);
+            margin: 0 0 0.5rem 0;
+        }
+        .video-placeholder {
+            background: #eee;
+            border-radius: 12px;
+            aspect-ratio: 16/9;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #666;
+            margin-bottom: 2rem;
+            border: 2px dashed #ccc;
+        }
+        .video-placeholder svg {
+            width: 64px;
+            height: 64px;
+            fill: #ccc;
+            margin-bottom: 1rem;
+        }
+        .lesson-desc {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+        .action-box {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+        }
+        .action-box h3 {
+            margin-top: 0;
+            color: var(--navy);
+        }
+        .btn-download {
+            display: inline-block;
+            background-color: var(--teal);
+            color: white;
+            text-decoration: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            font-weight: 700;
+            transition: background 0.3s;
+        }
+        .btn-download:hover {
+            background-color: #157e5d;
+        }
+        .reflection-box {
+            border: 2px solid var(--gold);
+            padding: 2rem;
+            border-radius: 8px;
+            background: rgba(232, 160, 32, 0.05);
+            margin-bottom: 3rem;
+        }
+        .reflection-box h3 {
+            color: var(--gold);
+            margin-top: 0;
+        }
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid #ddd;
+            padding-top: 2rem;
+            padding-bottom: 4rem;
+        }
+        .nav-btn {
+            padding: 0.75rem 1.5rem;
+            border: 1px solid var(--navy);
+            background: transparent;
+            color: var(--navy);
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.3s;
+        }
+        .nav-btn:hover {
+            background: var(--navy);
+            color: white;
+        }
+        .nav-btn:disabled {
+            border-color: #ccc;
+            color: #ccc;
+            cursor: not-allowed;
+            background: transparent;
+        }
+
+        @media(max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                height: auto;
+                max-height: 300px;
+            }
+            .main-content {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="sidebar">
+    <div class="sidebar-header">
+        <h2 class="playfair">Course Player</h2>
+        <a href="/courses.html">&larr; Back to Catalog</a>
+    </div>
+    
+    <div class="tier-selector">
+        <span class="tier-label">Select Age Tier</span>
+        <div class="tier-pills">
+            <button class="tier-pill active" data-tier="k5">K-5</button>
+            <button class="tier-pill" data-tier="middle">Middle School</button>
+            <button class="tier-pill" data-tier="high">High School</button>
+        </div>
+    </div>
+
+    <div class="module-list" id="moduleList">
+        <!-- Rendered by JS -->
+    </div>
+</div>
+
+<div class="main-content">
+    <div class="content-wrapper" id="mainContent">
+        <!-- Rendered by JS -->
+    </div>
+</div>
+
+<script>
+const courseData = {
+  title: 'Social-Emotional Learning: A Tiered Framework for Student Success',
+  modules: [
+    {
+      id: 1,
+      title: 'Module 1: Self-Awareness',
+      lessons: [
+        {
+          id: 101,
+          title: 'Naming Your Internal State',
+          content: {
+            'k5': {
+              description: 'Before we can manage big feelings, we need to learn to name them. In this lesson, we explore where emotions live in the body using our Body Mapping activity.',
+              activity: 'Where Do I Feel It? Body Mapping — color in where you feel different emotions on a body outline.',
+              reflection: 'When I get a math answer wrong, my body feels...'
+            },
+            'middle': {
+              description: 'This lesson introduces the Emotion/Trigger Tracker — a tool for noticing patterns between academic situations and emotional responses over a full week.',
+              activity: '5-Day Emotion/Trigger Tracker — log specific academic triggers and the emotions attached.',
+              reflection: 'The subject that makes me feel the most anxious is ___, because I think...'
+            },
+            'high': {
+              description: 'This lesson introduces the Fixed vs. Growth Mindset Audit — evaluating the self-talk that runs in the background during studying and reframing it.',
+              activity: 'T-Chart Audit — write automatic negative thoughts and reframe them into growth statements.',
+              reflection: 'How does my current view of my own intelligence hold me back from asking for help?'
+            }
+          }
+        }
+      ]
+    },
+    {
+      id: 2,
+      title: 'Module 2: Self-Regulation',
+      lessons: [
+        {
+          id: 201,
+          title: 'The Pause Before Reacting',
+          content: {
+            'k5': {
+              description: 'In this lesson, we learn the Patience Power breathing technique — a visual tool for young learners to self-regulate during stressful moments.',
+              activity: 'Breathing Maze — trace a star or square shape while breathing in on one side and out on the next.',
+              reflection: 'When I want to give up, my favorite way to take a break is...'
+            },
+            'middle': {
+              description: 'The 5-4-3-2-1 Grounding Technique is a science-backed sensory tool to interrupt anxiety before it escalates, especially useful right before a test.',
+              activity: '5-4-3-2-1 Sensory Checklist — a guided worksheet to complete before any high-stress event.',
+              reflection: 'If I feel a panic response starting during homework, my step-by-step plan is to...'
+            },
+            'high': {
+              description: 'Executive Functioning and Time-Blocking: learn to distinguish between procrastination from laziness vs. procrastination from anxiety, then break large projects into 15-minute micro-tasks.',
+              activity: 'Stress-Management Calendar — identify your project, break it into micro-tasks, and schedule them.',
+              reflection: 'What is one environmental distraction I can control when I sit down to study?'
+            }
+          }
+        }
+      ]
+    },
+    { id: 3, title: 'Module 3: Social Awareness', lessons: [{ id: 301, title: 'Reading the Room', content: { k5: { description: 'Learn to notice how others feel using facial expressions and body language clues.', activity: 'Emotion Faces Matching Game worksheet.', reflection: 'When a friend looks sad, the first thing I want to do is...' }, middle: { description: 'Explore empathy — what it means to understand feelings without having the same experience.', activity: 'Empathy Scenario Cards — read situations and write what the other person might be feeling.', reflection: 'A time I felt understood by someone was when they...' }, high: { description: 'Perspective-taking in complex social situations, including conflict and group dynamics.', activity: 'Multi-Perspective Story Analysis — read a scenario from 3 different viewpoints.', reflection: 'A recent situation where I could have shown more empathy was...' } } }] },
+    { id: 4, title: 'Module 4: Relationship Skills', lessons: [{ id: 401, title: 'Communication & Conflict Resolution', content: { k5: { description: 'Learn the difference between kind words and unkind words, and how to use I-statements.', activity: 'I-Statement Practice Cards — fill in "I feel ___ when ___ because ___"', reflection: 'When I disagree with a friend, I usually...' }, middle: { description: 'Active listening skills and how to navigate disagreements without escalating.', activity: 'Active Listening Checklist — rate yourself in a recent conversation.', reflection: 'The hardest part of disagreeing with someone for me is...' }, high: { description: 'Assertive vs. aggressive vs. passive communication styles and when each shows up.', activity: 'Communication Style Audit — reflect on a recent conflict and categorize your responses.', reflection: 'In high-pressure situations, my default communication style tends to be...' } } }] },
+    { id: 5, title: 'Module 5: Responsible Decision-Making', lessons: [{ id: 501, title: 'Thinking Through Consequences', content: { k5: { description: 'Every choice has a result. In this lesson we use a simple "If I do X, then Y might happen" framework.', activity: 'Choice Tree Worksheet — draw the branches of a decision and its possible outcomes.', reflection: 'A choice I made recently that I\'m proud of was...' }, middle: { description: 'Using a decision matrix to weigh short-term vs. long-term consequences of choices.', activity: 'Decision Matrix — rate options by immediate vs. future impact.', reflection: 'A decision I\'ve been putting off making is... because I\'m afraid of...' }, high: { description: 'Values clarification and how personal values guide ethical decision-making under pressure.', activity: 'Values Ranking Exercise — rank your top 10 values and connect them to recent decisions.', reflection: 'A situation where I made a decision that didn\'t match my values was...' } } }] }
+  ]
+};
+
+const SUPABASE_URL = 'https://hzmxktlkrkohxokzdsvw.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh6bXhrdGxrcmtvaHhva3pkc3Z3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODUxMTMzOTgsImV4cCI6MjEwMDY4OTM5OH0.CnW4a62P5VQgX9kFizMKvtW0NQzdGsnITsEimiFevHs';
+const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+let currentTier = 'k5';
+let currentLessonObj = null;
+const allLessons = courseData.modules.flatMap(m => m.lessons);
+
+document.addEventListener('DOMContentLoaded', async () => {
+  const { data: { session } } = await supabase.auth.getSession();
+  if (!session) { window.location.href = '/account.html?redirect=course-player'; return; }
+  
+  const SEL_COURSE_ID = '6d278650-a784-4304-9b62-049be8190ff6';
+  
+  const { data: enrollment } = await supabase
+    .from('enrollments')
+    .select('id')
+    .eq('profile_id', session.user.id)
+    .eq('course_id', SEL_COURSE_ID)
+    .maybeSingle();
+  if (!enrollment) { window.location.href = '/courses.html?msg=enroll-first'; return; }
+  
+  initCoursePlayer();
+});
+
+function initCoursePlayer() {
+  const tierPills = document.querySelectorAll('.tier-pill');
+  tierPills.forEach(pill => {
+    pill.addEventListener('click', (e) => {
+      tierPills.forEach(p => p.classList.remove('active'));
+      e.target.classList.add('active');
+      currentTier = e.target.getAttribute('data-tier');
+      if (currentLessonObj) renderLessonContent();
+    });
+  });
+
+  renderSidebar();
+  
+  // Select first lesson by default
+  if (courseData.modules[0].lessons.length > 0) {
+      document.querySelector('.module-item').classList.add('open');
+      selectLesson(courseData.modules[0].lessons[0]);
+  }
+}
+
+function renderSidebar() {
+  const list = document.getElementById('moduleList');
+  list.innerHTML = '';
+  
+  courseData.modules.forEach(mod => {
+    const modEl = document.createElement('div');
+    modEl.className = 'module-item';
+    
+    const titleEl = document.createElement('div');
+    titleEl.className = 'module-title';
+    titleEl.innerHTML = `<span>${mod.title}</span> <span>+</span>`;
+    titleEl.onclick = () => {
+        modEl.classList.toggle('open');
+        titleEl.querySelector('span:last-child').textContent = modEl.classList.contains('open') ? '−' : '+';
+    };
+    
+    const lessonsUl = document.createElement('ul');
+    lessonsUl.className = 'lesson-list';
+    
+    mod.lessons.forEach(less => {
+        const lessLi = document.createElement('li');
+        lessLi.className = 'lesson-item';
+        lessLi.textContent = less.title;
+        lessLi.onclick = () => selectLesson(less);
+        lessLi.dataset.id = less.id;
+        lessonsUl.appendChild(lessLi);
+    });
+    
+    modEl.appendChild(titleEl);
+    modEl.appendChild(lessonsUl);
+    list.appendChild(modEl);
+  });
+}
+
+function selectLesson(lesson) {
+    currentLessonObj = lesson;
+    
+    document.querySelectorAll('.lesson-item').forEach(el => el.classList.remove('active'));
+    const activeEl = document.querySelector(`.lesson-item[data-id="${lesson.id}"]`);
+    if(activeEl) activeEl.classList.add('active');
+    
+    renderLessonContent();
+}
+
+function renderLessonContent() {
+    const container = document.getElementById('mainContent');
+    if (!currentLessonObj || !currentLessonObj.content[currentTier]) {
+        container.innerHTML = '<h2>Content not available for this tier.</h2>';
+        return;
+    }
+
+    const data = currentLessonObj.content[currentTier];
+    const currentIndex = allLessons.findIndex(l => l.id === currentLessonObj.id);
+
+    container.innerHTML = `
+        <div class="lesson-header">
+            <h1 class="lesson-title">${currentLessonObj.title}</h1>
+            <div style="color:var(--teal); font-weight:700; text-transform:uppercase; font-size:0.875rem;">
+                Tier: ${currentTier === 'k5' ? 'K-5' : currentTier === 'middle' ? 'Middle School' : 'High School'}
+            </div>
+        </div>
+
+        <div class="video-placeholder">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            <div>Video lesson coming soon — check back shortly!</div>
+        </div>
+
+        <div class="lesson-desc">${data.description}</div>
+
+        <div class="action-box">
+            <h3>Activity</h3>
+            <p>${data.activity}</p>
+            <a href="#" class="btn-download" onclick="alert('Worksheet download will be available soon.')">Download Worksheet</a>
+        </div>
+
+        <div class="reflection-box">
+            <h3>Reflection Prompt</h3>
+            <p><em>${data.reflection}</em></p>
+        </div>
+
+        <div class="nav-buttons">
+            <button class="nav-btn" ${currentIndex === 0 ? 'disabled' : ''} onclick="navLesson(-1)">Previous Lesson</button>
+            <button class="nav-btn" ${currentIndex === allLessons.length - 1 ? 'disabled' : ''} onclick="navLesson(1)">Next Lesson</button>
+        </div>
+    `;
+}
+
+function navLesson(dir) {
+    const currentIndex = allLessons.findIndex(l => l.id === currentLessonObj.id);
+    const newLesson = allLessons[currentIndex + dir];
+    if (newLesson) {
+        // Expand the module if needed
+        const mod = courseData.modules.find(m => m.lessons.some(l => l.id === newLesson.id));
+        const modEls = document.querySelectorAll('.module-item');
+        modEls.forEach(el => {
+            if (el.querySelector('.module-title').textContent.includes(mod.title)) {
+                el.classList.add('open');
+                el.querySelector('.module-title span:last-child').textContent = '−';
+            }
+        });
+        selectLesson(newLesson);
+        document.querySelector('.main-content').scrollTop = 0;
+    }
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>My Dashboard | All Inclusive Tutoring Solutions LLC</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --navy:#0d2340; --gold:#e8a020; --gold-light:#f5c96a; --teal:#1d9e75; --warm-white:#fffef9; --soft-gray:#f6f5f0; --text-dark:#1a1a2e; --text-mid:#4a4a6a; --border:#e2ddd0; }
+  body { font-family:'DM Sans', sans-serif; color:var(--text-dark); background:var(--warm-white); }
+  nav { background:var(--navy); padding:0 4%; height:64px; display:flex; align-items:center; justify-content:space-between; }
+  .nav-logo { font-family:'Playfair Display', serif; color:var(--gold-light); font-size:1rem; text-decoration:none; }
+  .nav-logo span { color:#fff; }
+  .logout-btn { background:transparent; border:1.5px solid rgba(255,255,255,0.3); color:#fff; padding:8px 18px; border-radius:100px; font-size:0.82rem; cursor:pointer; font-family:inherit; }
+  .logout-btn:hover { border-color:var(--gold); color:var(--gold); }
+  .wrap { max-width:840px; margin:0 auto; padding:2.5rem 1.5rem 4rem; }
+  h1 { font-family:'Playfair Display', serif; color:var(--navy); font-size:1.6rem; margin-bottom:0.3rem; }
+  .greeting { color:var(--text-mid); margin-bottom:2rem; }
+  .tabs { display:flex; gap:0.5rem; margin-bottom:1.75rem; border-bottom:1.5px solid var(--border); }
+  .tab { padding:10px 18px; font-size:0.9rem; font-weight:600; color:var(--text-mid); cursor:pointer; border-bottom:2.5px solid transparent; margin-bottom:-1.5px; }
+  .tab.active { color:var(--navy); border-bottom-color:var(--teal); }
+  .panel { display:none; }
+  .panel.active { display:block; }
+  .card { background:#fff; border:1px solid var(--border); border-radius:14px; padding:1.75rem; margin-bottom:1.25rem; }
+  .card h3 { font-family:'Playfair Display', serif; color:var(--navy); font-size:1.1rem; margin-bottom:1rem; }
+  .form-row { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+  .form-group { margin-bottom:1rem; }
+  label { display:block; font-size:0.82rem; font-weight:600; color:var(--navy); margin-bottom:0.35rem; }
+  input, select, textarea { width:100%; padding:10px 13px; border:1.5px solid var(--border); border-radius:8px; font-size:0.92rem; font-family:inherit; }
+  textarea { min-height:90px; resize:vertical; }
+  input:focus, select:focus, textarea:focus { outline:none; border-color:var(--teal); }
+  .btn { padding:11px 24px; border:none; border-radius:100px; background:var(--navy); color:#fff; font-weight:600; font-size:0.9rem; cursor:pointer; }
+  .btn:hover { background:#16305a; }
+  .btn-gold { background:var(--gold); color:var(--text-dark); }
+  .btn-gold:hover { background:var(--gold-light); }
+  .btn-outline { background:transparent; border:1.5px solid var(--navy); color:var(--navy); }
+  .action-grid { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+  .action-card { border:1px solid var(--border); border-radius:12px; padding:1.25rem; text-align:center; }
+  .action-card p { font-size:0.85rem; color:var(--text-mid); margin:0.5rem 0 1rem; }
+  .msg { margin-top:1rem; padding:0.7rem 1rem; border-radius:8px; font-size:0.85rem; display:none; }
+  .msg.error { background:#fde8e8; color:#c0392b; }
+  .msg.success { background:#e1f5ee; color:#1d9e75; }
+  .empty { color:var(--text-mid); font-size:0.9rem; text-align:center; padding:2rem 0; }
+  .course-card { display:flex; justify-content:space-between; align-items:center; border:1px solid var(--border); border-radius:12px; padding:1.25rem; margin-bottom:0.75rem; }
+  .course-card h4 { font-size:1rem; color:var(--navy); margin-bottom:0.25rem; }
+  .course-card p { font-size:0.85rem; color:var(--text-mid); }
+  .pill { display:inline-block; background:var(--soft-gray); font-size:0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:0.05em; padding:4px 10px; border-radius:100px; color:var(--text-mid); }
+  .pill.owned { background:#e1f5ee; color:var(--teal); }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">All Inclusive Tutoring <span>Solutions LLC</span></a>
+  <button class="logout-btn" onclick="logout()">Log Out</button>
+</nav>
+
+<div class="wrap">
+  <h1>Welcome back<span id="parentNameHeader"></span></h1>
+  <p class="greeting">Your family portal for managing sessions, requests, and courses.</p>
+
+  <div class="tabs">
+    <div class="tab active" onclick="showTab('profile')">Profile</div>
+    <div class="tab" onclick="showTab('requests')">Requests</div>
+    <div class="tab" onclick="showTab('courses')">Courses</div>
+    <div class="tab" onclick="showTab('billing')">Billing</div>
+  </div>
+
+  <!-- PROFILE TAB -->
+  <div class="panel active" id="profilePanel">
+    <div class="card">
+      <h3>Student Profile &amp; Intake</h3>
+      <p style="color:var(--text-mid);font-size:0.9rem;margin-bottom:1.25rem;">Help us tailor our engineering-level STEM and executive function coaching to your child's exact needs. Save their info here once, update it anytime.</p>
+      <form id="profileForm">
+        <div class="form-row">
+          <div class="form-group"><label>Parent Name</label><input type="text" id="parentName" /></div>
+          <div class="form-group"><label>Phone</label><input type="tel" id="parentPhone" /></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Student Name</label><input type="text" id="studentName" /></div>
+          <div class="form-group"><label>Grade</label><input type="text" id="studentGrade" /></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Student Age Tier</label>
+            <select id="studentAgeTier">
+              <option value="">Select...</option>
+              <option value="k5">K-5</option>
+              <option value="middle">Middle School</option>
+              <option value="high">High School</option>
+            </select>
+          </div>
+          <div class="form-group"><label>ESA State (if applicable)</label><input type="text" id="esaState" placeholder="e.g. Arizona" /></div>
+        </div>
+        <div class="form-group">
+          <label>What are you hoping to work on? (goals, strengths, challenges)</label>
+          <textarea id="studentGoals" placeholder="Tell us about your student's needs to help us maximize their success..."></textarea>
+        </div>
+        <button type="submit" class="btn">Save Profile</button>
+        <div class="msg" id="profileMsg"></div>
+      </form>
+    </div>
+  </div>
+
+  <!-- REQUESTS TAB -->
+  <div class="panel" id="requestsPanel">
+    <div class="card">
+      <h3>Support & Custom Requests</h3>
+      <p style="color:var(--text-mid);font-size:0.9rem;margin-bottom:1.25rem;">Use these buttons to contact our team for administrative support or to negotiate a custom tuition rate. We are committed to finding a solution that fits your family's budget and educational goals.</p>
+      <div class="action-grid">
+        <div class="action-card">
+          <strong>Request References</strong>
+          <p>View testimonials and peer references.</p>
+          <button class="btn btn-outline" onclick="submitRequest('reference')">Request References</button>
+        </div>
+        <div class="action-card">
+          <strong>Request Custom Pricing</strong>
+          <p>Propose a rate that fits your budget.</p>
+          <button class="btn btn-outline" onclick="openPricingPrompt()">Request Custom Pricing</button>
+        </div>
+      </div>
+      <div class="msg" id="requestMsg"></div>
+    </div>
+    <div class="card">
+      <h3>Request History</h3>
+      <div id="requestsList"><p class="empty">Loading...</p></div>
+    </div>
+  </div>
+
+  <!-- COURSES TAB -->
+  <div class="panel" id="coursesPanel">
+    <div class="card">
+      <h3>Your Digital Learning Library</h3>
+      <p style="color:var(--text-mid);font-size:0.9rem;margin-bottom:1.25rem;">Access your purchased self-paced courses, downloadable worksheets, and specialized SEL (Social-Emotional Learning) resources here.</p>
+      <div id="coursesList"><p class="empty">It looks a little quiet here&hellip; for now! Check back soon for new materials.</p></div>
+    </div>
+  </div>
+
+  <!-- BILLING TAB -->
+  <div class="panel" id="billingPanel">
+    <div class="card">
+      <h3>Invoices &amp; ESA Payments</h3>
+      <p style="color:var(--text-mid); font-size:0.9rem; margin-bottom:1rem;">Click below to securely access your Stripe Customer Portal. Here you can view your payment history, pay outstanding invoices, and download receipts to submit to your state's ESA portal for reimbursement.</p>
+      <a href="#" class="btn btn-gold" id="billingPortalLink">Open Stripe Billing Portal &rarr;</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  const SUPABASE_URL = "https://hzmxktlkrkohxokzdsvw.supabase.co";
+  const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh6bXhrdGxrcmtvaHhva3pkc3Z3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODUxMTMzOTgsImV4cCI6MjEwMDY4OTM5OH0.CnW4a62P5VQgX9kFizMKvtW0NQzdGsnITsEimiFevHs";
+  const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  let currentUser = null;
+
+  function showTab(name) {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    event.target.classList.add('active');
+    document.getElementById(name + 'Panel').classList.add('active');
+    if (name === 'requests') loadRequests();
+    if (name === 'courses') loadCourses();
+  }
+
+  function showMsg(id, text, type) {
+    const box = document.getElementById(id);
+    box.textContent = text;
+    box.className = 'msg ' + type;
+    box.style.display = 'block';
+    setTimeout(() => { box.style.display = 'none'; }, 4000);
+  }
+
+  async function logout() {
+    await supabaseClient.auth.signOut();
+    window.location.href = '/account.html';
+  }
+
+  async function loadProfile() {
+    const { data, error } = await supabaseClient.from('profiles').select('*').eq('id', currentUser.id).single();
+    if (error || !data) return;
+    document.getElementById('parentName').value = data.parent_name || '';
+    document.getElementById('parentPhone').value = data.parent_phone || '';
+    document.getElementById('studentName').value = data.student_name || '';
+    document.getElementById('studentGrade').value = data.student_grade || '';
+    document.getElementById('studentAgeTier').value = data.student_age_tier || '';
+    document.getElementById('esaState').value = data.esa_state || '';
+    document.getElementById('studentGoals').value = data.student_goals || '';
+    if (data.parent_name) {
+      document.getElementById('parentNameHeader').textContent = ', ' + data.parent_name.split(' ')[0];
+    }
+  }
+
+  document.getElementById('profileForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const updates = {
+      parent_name: document.getElementById('parentName').value,
+      parent_phone: document.getElementById('parentPhone').value,
+      student_name: document.getElementById('studentName').value,
+      student_grade: document.getElementById('studentGrade').value,
+      student_age_tier: document.getElementById('studentAgeTier').value || null,
+      esa_state: document.getElementById('esaState').value,
+      student_goals: document.getElementById('studentGoals').value
+    };
+    const { error } = await supabaseClient.from('profiles').update(updates).eq('id', currentUser.id);
+    if (error) {
+      showMsg('profileMsg', 'Error saving: ' + error.message, 'error');
+    } else {
+      showMsg('profileMsg', 'Profile saved!', 'success');
+    }
+  });
+
+  async function submitRequest(type, details) {
+    const { error } = await supabaseClient.from('requests').insert({
+      profile_id: currentUser.id,
+      request_type: type,
+      details: details || null
+    });
+    if (error) {
+      showMsg('requestMsg', 'Error: ' + error.message, 'error');
+    } else {
+      showMsg('requestMsg', 'Request sent! We\'ll follow up personally soon.', 'success');
+      loadRequests();
+    }
+  }
+
+  function openPricingPrompt() {
+    const budget = prompt("What rate would you be comfortable moving forward with? (e.g. $18/hour, or a monthly budget)");
+    if (budget) submitRequest('pricing', budget);
+  }
+
+  async function loadRequests() {
+    const { data, error } = await supabaseClient.from('requests').select('*').eq('profile_id', currentUser.id).order('created_at', { ascending: false });
+    const list = document.getElementById('requestsList');
+    if (error || !data || data.length === 0) {
+      list.innerHTML = '<p class="empty">No requests yet.</p>';
+      return;
+    }
+    list.innerHTML = data.map(r => `
+      <div class="course-card">
+        <div>
+          <h4>${r.request_type === 'reference' ? 'Reference Request' : 'Custom Pricing Request'}</h4>
+          <p>${r.details || 'No additional details'} — ${new Date(r.created_at).toLocaleDateString()}</p>
+        </div>
+        <span class="pill">${r.status}</span>
+      </div>
+    `).join('');
+  }
+
+  async function loadCourses() {
+    const { data: courses, error } = await supabaseClient.from('courses').select('*').eq('is_published', true);
+    const { data: enrollments } = await supabaseClient.from('enrollments').select('course_id').eq('profile_id', currentUser.id);
+    const ownedIds = (enrollments || []).map(e => e.course_id);
+
+    const list = document.getElementById('coursesList');
+    if (error || !courses || courses.length === 0) {
+      list.innerHTML = '<p class="empty">No courses available yet — check back soon!</p>';
+      return;
+    }
+    list.innerHTML = courses.map(c => {
+      const owned = ownedIds.includes(c.id);
+      return `
+        <div class="course-card">
+          <div>
+            <h4>${c.title}</h4>
+            <p>${c.description || ''}</p>
+          </div>
+          ${owned
+            ? `<a href="/course-player.html" class="btn btn-gold">Continue →</a>`
+            : `<a href="/courses.html" class="btn">$${(c.price_cents / 100).toFixed(2)} — View →</a>`
+          }
+        </div>
+      `;
+    }).join('');
+  }
+
+  (async () => {
+    const { data: { session } } = await supabaseClient.auth.getSession();
+    if (!session) {
+      window.location.href = '/account.html';
+      return;
+    }
+    currentUser = session.user;
+    await loadProfile();
+  })();
+</script>
+
+</body>
+</html>

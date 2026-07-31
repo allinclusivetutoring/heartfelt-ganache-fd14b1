@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New to ESA Funding? Getting Started Guide | All Inclusive Tutoring</title>
+    <meta name="description" content="Step-by-step guide for new ESA families: check your state eligibility, apply for funds, find an approved vendor, and book your first virtual tutoring session.">
+    <link rel="canonical" href="https://allinclusivetutoring.com/getting-started">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #0d2340;
+            --gold: #e8a020;
+            --gold-light: #f5c96a;
+            --teal: #1d9e75;
+            --warm-white: #fffef9;
+        }
+        
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: var(--warm-white);
+            color: var(--navy);
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            color: var(--navy);
+        }
+        
+        /* Nav */
+        nav {
+            background-color: var(--navy);
+            color: var(--warm-white);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .nav-logo a {
+            color: var(--warm-white);
+            text-decoration: none;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .nav-logo span {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 400;
+            opacity: 0.8;
+            display: block;
+        }
+        
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .nav-links a {
+            color: var(--warm-white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--gold-light);
+        }
+        
+        .ait-cta-gold {
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            color: var(--navy);
+            padding: 0.6rem 1.2rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: inline-block;
+        }
+        
+        .ait-cta-gold:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(232, 160, 32, 0.4);
+        }
+
+        .nav-row-top { display: flex; align-items: center; gap: 2rem; }
+        
+        @media (max-width: 768px) {
+            .nav-row-top { flex-direction: column; text-align: center; }
+            .nav-links { flex-wrap: wrap; justify-content: center; }
+            nav { justify-content: center; text-align: center; }
+        }
+
+        /* Hero */
+        .hero {
+            background-color: var(--navy);
+            color: var(--warm-white);
+            text-align: center;
+            padding: 5rem 1rem;
+        }
+        
+        .hero-eyebrow {
+            color: var(--gold-light);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero h1 {
+            color: var(--warm-white);
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Stepper */
+        .stepper-section {
+            padding: 5rem 1rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .step {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            left: 24px; /* Center of the 48px circle */
+            top: 50px;
+            bottom: -30px;
+            width: 2px;
+            background-color: rgba(13, 35, 64, 0.1);
+            z-index: 0;
+        }
+        
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background-color: var(--teal);
+            color: var(--warm-white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            flex-shrink: 0;
+            z-index: 1;
+        }
+        
+        .step-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            flex-grow: 1;
+        }
+        
+        .step-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .step-content ul {
+            padding-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .step-content li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .step-cta {
+            display: inline-block;
+            background-color: var(--navy);
+            color: var(--warm-white);
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        
+        .step-cta:hover {
+            background-color: #163660;
+        }
+
+        /* FAQ */
+        .faq-section {
+            background-color: rgba(13, 35, 64, 0.03);
+            padding: 5rem 1rem;
+        }
+        
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-container h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .accordion-item {
+            background: white;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+            overflow: hidden;
+        }
+        
+        .accordion-header {
+            width: 100%;
+            text-align: left;
+            padding: 1.5rem;
+            background: none;
+            border: none;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--navy);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .accordion-header::after {
+            content: '+';
+            font-size: 1.5rem;
+            color: var(--teal);
+        }
+        
+        .accordion-item.active .accordion-header::after {
+            content: '−';
+        }
+        
+        .accordion-content {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease;
+        }
+        
+        .accordion-item.active .accordion-content {
+            padding: 0 1.5rem 1.5rem;
+            max-height: 500px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--navy);
+            color: var(--warm-white);
+            padding: 3rem 5%;
+            text-align: center;
+        }
+        
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-logo span {
+            display: block;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 400;
+            opacity: 0.7;
+            margin-top: 0.5rem;
+        }
+        
+        @media (max-width: 600px) {
+            .step { flex-direction: column; gap: 1rem; }
+            .step:not(:last-child)::after { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-row-top">
+            <div class="nav-logo"><a href="/">All Inclusive Tutoring <span>Solutions LLC</span></a></div>
+            <ul class="nav-links">
+                <li><a href="/services.html">Services</a></li>
+                <li><a href="/pricing.html">Pricing</a></li>
+                <li><a href="/resources.html">Resources</a></li>
+                <li><a href="/why-choose-us.html">About</a></li>
+                <li><a href="/account.html">Parent Portal</a></li>
+            </ul>
+        </div>
+        <div class="nav-row-cta">
+            <a href="https://calendly.com/allinclusivetutoring" target="_blank" class="ait-cta-gold">Book Free Consultation &rarr;</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-eyebrow">Step-by-Step Guide</div>
+        <h1>New to ESA? Here's Exactly How to Get Started</h1>
+        <p>No jargon. No pressure. Just a clear roadmap from first question to first session.</p>
+    </header>
+
+    <section class="stepper-section">
+        <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+                <h3>Check Your State's Eligibility</h3>
+                <ul>
+                    <li>Is your state on the approved list? (AZ, FL, LA, IN, IA, MT, NH, NC, SC, UT, WV, WY)</li>
+                    <li>Programs have different eligibility requirements (public school enrollment, income, disability status, etc.)</li>
+                    <li>Learn more in our full state explainer: <a href="/what-is-esa.html">What is ESA?</a></li>
+                </ul>
+                <a href="/resources.html" class="step-cta">Check My State</a>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+                <h3>Apply for Your State's ESA Program</h3>
+                <ul>
+                    <li>Each state has its own application portal. You'll typically need: proof of state residency, student info, prior school enrollment records.</li>
+                    <li>Processing times vary: 2–8 weeks typically.</li>
+                    <li>Once approved, funds are loaded to ClassWallet or Odyssey quarterly.</li>
+                    <li><strong>Tip:</strong> Apply early — some programs have waitlists.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+                <h3>Find &amp; Book an Approved Vendor</h3>
+                <ul>
+                    <li>Search for "All Inclusive Tutoring Solutions LLC" in your state's approved vendor directory (ClassWallet or Odyssey).</li>
+                    <li>We're pre-approved in all 12 states — no extra paperwork needed on your end.</li>
+                    <li>Sessions are billed directly through the state portal — zero out-of-pocket for you.</li>
+                    <li>Rates starting at $9.17 / 30-minute session.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-number">4</div>
+            <div class="step-content">
+                <h3>Book Your Free 90-Minute Trial</h3>
+                <ul>
+                    <li>Start with our introductory 90-minute trial (split as two 45-minute sessions).</li>
+                    <li>Experience our teaching style firsthand with minimal risk.</li>
+                    <li>If it's the right fit, we'll build a custom learning plan for your student.</li>
+                </ul>
+                <a href="https://calendly.com/allinclusivetutoring" target="_blank" class="ait-cta-gold" style="display:inline-block; margin-top:1rem;">Book Your Free Trial</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq-section">
+        <div class="faq-container">
+            <h2>Frequently Asked Questions</h2>
+            
+            <div class="accordion-item">
+                <button class="accordion-header">Do I have to leave public school to qualify?</button>
+                <div class="accordion-content">
+                    <p>It depends on your state. Arizona requires withdrawal from public school. Some states have programs that work alongside public schooling.</p>
+                </div>
+            </div>
+            
+            <div class="accordion-item">
+                <button class="accordion-header">How long does ESA approval take?</button>
+                <div class="accordion-content">
+                    <p>Typically 2–8 weeks. Apply as early as possible — some programs have waitlists that fill during open enrollment periods.</p>
+                </div>
+            </div>
+            
+            <div class="accordion-item">
+                <button class="accordion-header">What subjects and services does my ESA cover?</button>
+                <div class="accordion-content">
+                    <p>ESA funds typically cover: private tutoring, curriculum materials, educational therapy, and specialized instruction. Our tutoring is eligible in all 12 states we serve.</p>
+                </div>
+            </div>
+            
+            <div class="accordion-item">
+                <button class="accordion-header">What if my state isn't on the list?</button>
+                <div class="accordion-content">
+                    <p>New ESA programs are being created every year. Even without ESA, our rates ($9.17/30 min) are highly competitive. Contact us to discuss options.</p>
+                </div>
+            </div>
+            
+            <div class="accordion-item">
+                <button class="accordion-header">How do I pay using ClassWallet or Odyssey?</button>
+                <div class="accordion-content">
+                    <p>We'll walk you through it on our free consultation call. Both platforms are straightforward once you know the steps.</p>
+                </div>
+            </div>
+            
+            <div style="text-align:center; margin-top: 3rem;">
+                <a href="https://calendly.com/allinclusivetutoring" target="_blank" class="ait-cta-gold" style="font-size: 1.1rem; padding: 1rem 2rem;">Ready to Begin? Book Your Consultation</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-logo">All Inclusive Tutoring Solutions LLC<span>Virtual Tutoring &middot; STEM &middot; ACT Prep &middot; Homeschool Support &middot; ESA Accepted</span></div>
+        <div style="width:100%;border-top:1px solid rgba(255,255,255,0.08);margin:1.5rem 0;padding-top:1.5rem;">
+            <p style="font-size:0.78rem;color:rgba(255,255,255,0.45);line-height:1.7;max-width:800px;margin:0 auto;text-align:center;">
+                <strong style="color:rgba(255,255,255,0.6);">Nondiscrimination Statement:</strong> All Inclusive Tutoring Solutions does not discriminate on the basis of race, color, religion, national origin, ancestry, disability, age, marital status, sex, sexual orientation, gender identity or expression, or any other characteristic protected by applicable federal, state, or local law.
+            </p>
+        </div>
+        <p>&copy; 2025 All Inclusive Tutoring Solutions LLC. All rights reserved. &middot; <a href="/nondiscrimination.html" style="color:rgba(255,255,255,0.4);text-decoration:none;">Nondiscrimination Policy</a> &middot; <a href="/terms.html" style="color:rgba(255,255,255,0.4);text-decoration:none;">Terms &amp; Conditions</a></p>
+    </footer>
+
+    <script>
+        document.querySelectorAll('.accordion-header').forEach(button => {
+            button.addEventListener('click', () => {
+                const item = button.parentElement;
+                const isActive = item.classList.contains('active');
+                
+                // Close all
+                document.querySelectorAll('.accordion-item').forEach(acc => {
+                    acc.classList.remove('active');
+                });
+                
+                // Open clicked if it wasn't already active
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Services | All Inclusive Tutoring Solutions LLC</title>
+<meta name="description" content="Explore all tutoring services offered by All Inclusive Tutoring Solutions LLC — academics, test prep, and specialized support. Virtual, ESA accepted, K–college." />
+<meta name="author" content="Laura Amato, All Inclusive Tutoring Solutions LLC" />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy: #0d2340;
+    --gold: #e8a020;
+    --gold-light: #f5c96a;
+    --teal: #1d9e75;
+    --teal-light: #e1f5ee;
+    --warm-white: #fffef9;
+    --soft-gray: #f6f5f0;
+    --text-dark: #1a1a2e;
+    --text-mid: #4a4a6a;
+    --coral: #FF6F5E;
+    --purple: #6E5AA8;
+  }
+  body { font-family: 'DM Sans', sans-serif; color: var(--text-dark); background: var(--warm-white); }
+
+  nav {
+    background: var(--navy);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 6%; height: 70px;
+    border-bottom: 1px solid rgba(232,160,32,0.25);
+    gap: 1rem;
+  }
+  .nav-logo { font-family: 'Playfair Display', serif; color: var(--gold-light); font-size: 0.95rem; white-space: nowrap; }
+  .nav-logo a { text-decoration: none; color: inherit; display:flex; align-items:center; gap:8px; }
+  .nav-logo span { color: #fff; font-weight: 400; }
+  .back-link { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; white-space: nowrap; }
+  .back-link:hover { color: var(--gold-light); }
+
+  .page-header {
+    background: linear-gradient(135deg, var(--navy) 0%, #1a3a60 55%, #0f4d3a 100%);
+    padding: 60px 6% 50px; text-align: center;
+  }
+  .page-header .eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: rgba(232,160,32,0.12); border: 1px solid rgba(232,160,32,0.3);
+    color: var(--gold-light); font-size: 0.75rem; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 7px 18px; border-radius: 100px; margin-bottom: 1.5rem;
+  }
+  .page-header h1 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5vw, 3rem); color: #fff; margin-bottom: 1rem; }
+  .page-header p { color: rgba(255,255,255,0.7); max-width: 600px; margin: 0 auto; line-height: 1.7; font-weight: 300; }
+
+  .container { max-width: 1100px; margin: 0 auto; padding: 60px 6% 100px; }
+
+  .category-section { margin-bottom: 4rem; }
+  .category-header {
+    display: flex; align-items: center; gap: 1rem;
+    margin-bottom: 1.5rem; padding-bottom: 1rem;
+    border-bottom: 2px solid #ede9e0;
+  }
+  .category-icon { font-size: 1.8rem; }
+  .category-header h2 { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--navy); }
+  .category-header p { font-size: 0.9rem; color: var(--text-mid); margin-top: 0.2rem; }
+
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.25rem;
+  }
+  .service-card {
+    background: #fff; border: 1px solid #ede9e0; border-radius: 16px;
+    padding: 1.5rem; text-decoration: none; color: var(--text-dark);
+    transition: all 0.25s; display: flex; flex-direction: column; gap: 0.5rem;
+    position: relative; overflow: hidden;
+  }
+  .service-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    transform: scaleX(0); transition: transform 0.25s; transform-origin: left;
+  }
+  .service-card.subjects::before { background: var(--teal); }
+  .service-card.test-prep::before { background: var(--coral); }
+  .service-card.support::before { background: var(--purple); }
+  .service-card:hover { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(13,35,64,0.08); }
+  .service-card:hover::before { transform: scaleX(1); }
+  .service-card .card-icon { font-size: 1.6rem; }
+  .service-card h3 { font-size: 1rem; font-weight: 600; color: var(--navy); }
+  .service-card p { font-size: 0.82rem; color: var(--text-mid); line-height: 1.55; flex: 1; }
+  .card-arrow { font-size: 0.8rem; color: var(--teal); font-weight: 700; margin-top: 0.5rem; }
+  .service-card.test-prep .card-arrow { color: var(--coral); }
+  .service-card.support .card-arrow { color: var(--purple); }
+
+  .esa-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--teal-light); color: var(--teal);
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 3px 10px; border-radius: 100px; margin-top: 0.4rem; width: fit-content;
+  }
+  .specialty-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(232,160,32,0.15); color: #b3790f;
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 3px 10px; border-radius: 100px; margin-top: 0.3rem; width: fit-content;
+  }
+  .service-card.support.featured { border: 1.5px solid var(--gold); box-shadow: 0 8px 20px rgba(232,160,32,0.12); }
+
+  .cta-bar {
+    background: var(--navy); border-radius: 20px; padding: 2.5rem;
+    text-align: center; margin-top: 2rem;
+  }
+  .cta-bar h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: #fff; margin-bottom: 0.75rem; }
+  .cta-bar p { color: rgba(255,255,255,0.65); margin-bottom: 1.5rem; font-size: 0.95rem; }
+  .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .btn-primary { background: var(--gold); color: var(--navy); padding: 13px 30px; border-radius: 100px; font-weight: 700; font-size: 0.9rem; text-decoration: none; }
+  .btn-ghost { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,0.3); padding: 12px 28px; border-radius: 100px; font-weight: 500; font-size: 0.9rem; text-decoration: none; }
+
+  footer { background: var(--navy); padding: 2.5rem 6%; text-align: center; margin-top: 4rem; }
+  footer p { color: rgba(255,255,255,0.4); font-size: 0.8rem; }
+
+  @media (max-width: 600px) { .cards-grid { grid-template-columns: 1fr 1fr; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">
+    <a href="/"><img src="/logo.svg" alt="logo" style="height:30px;width:30px;" /> All Inclusive Tutoring <span>LLC</span></a>
+  </div>
+  <a href="/" class="back-link">← Back to Home</a>
+</nav>
+
+<div class="page-header">
+  <div class="eyebrow">✦ All Services</div>
+  <h1>What We Teach</h1>
+  <p>Every session is 100% virtual and ESA accepted. Browse by subject, test prep, or specialized support below — then book a free trial to get started.</p>
+</div>
+
+<div class="container">
+
+  <!-- ACADEMICS -->
+  <div class="category-section">
+    <div class="category-header">
+      <span class="category-icon">📚</span>
+      <div>
+        <h2>Academics</h2>
+        <p>Core subjects from K–12 through college level</p>
+      </div>
+    </div>
+    <div class="cards-grid">
+      <a href="/subjects_math.html" class="service-card subjects">
+        <span class="card-icon">➗</span>
+        <h3>Math</h3>
+        <p>Elementary through Calculus, statistics, and college math — built on real understanding.</p>
+        <span class="esa-badge">ESA Accepted</span>
+        <span class="card-arrow">Explore →</span>
+      </a>
+      <a href="/subjects_science.html" class="service-card subjects">
+        <span class="card-icon">🧪</span>
+        <h3>Science</h3>
+        <p>Biology, chemistry, physics, and earth science for all grade levels.</p>
+        <span class="esa-badge">ESA Accepted</span>
+        <span class="card-arrow">Explore →</span>
+      </a>
+      <a href="/subjects_reading-writing.html" class="service-card subjects">
+        <span class="card-icon">📖</span>
+        <h3>Reading & Writing</h3>
+        <p>Phonics, comprehension, fluency, and foundational writing skills.</p>
+        <span class="esa-badge">ESA Accepted</span>
+        <span class="card-arrow">Explore →</span>
+      </a>
+      <a href="/subjects_literature.html" class="service-card subjects">
+        <span class="card-icon">🎭</span>
+        <h3>Literature</h3>
+        <p>Literary analysis, close reading, and discussion-based exploration of texts.</p>
+        <span class="esa-badge">ESA Accepted</span>
+        <span class="card-arrow">Explore →</span>
+      </a>
+      <a href="/subjects_essay-research.html" class="service-card subjects">
+        <span class="card-icon">✍️</span>
+        <h3>Essay & Research</h3>
+        <p>Thesis development, research skills, citation, and academic essay writing.</p>
+        <span class="esa-badge">ESA Accepted</span>
+        <span class="card-arrow">Explore →</span>
+      </a>
+      <a href="/subjects_creative-writing.html" class="service-card subjects">
+        <span class="card-icon">🖊️</span>
+        <h3>Creative Writing</h3>
+        <p>Storytelling, poetry, voice development, and narrative craft.</p>
+        <span class="esa-badge">ESA Accepted</span>
+        <span class="card-arrow">Explore →</span>
+      </a>
+      <a href="/subjects_technical-writing.html" class="service-card subjects">
+        <span class="card-icon">📋</span>
+        <h3>Technical Writing</h3>
+        <p>Reports, documentation, and professional writing for STEM and business.</p>
+        <span class="esa-badge">ESA Accepted</span>
+        <span class="card-arrow">Explore →</span>
+      </a>
+      <a href="/subjects_stem-enrichment.html" class="service-card subjects">
+        <span class="card-icon">🔬</span>
+        <h3>STEM Enrichment</h3>
+        <p>Hands-on projects, critical thinking, and real-world STEM application.</p>
+        <span class="esa-badge">ESA Accepted</span>
+        <span class="card-arrow">Explore →</span>
+      </a>
+      <a href="/subjects_systems-thinking.html" class="service-card subjects">
+        <span class="card-icon">🧠</span>
+        <h3>Systems Thinking</h3>
+        <p>Problem decomposition, logical reasoning, and big-picture analytical skills.</p>
+        <span class="esa-badge">ESA Accepted</span>
+        <span class="card-arrow">Explore →</span>
+      </a>
+      <a href="/subjects_engineering-problem-solving.html" class="service-card subjects">
+        <span class="card-icon">⚙️</span>
+        <h3>Engineering Problem Solving</h3>
+        <p>Design thinking, structured problem solving, and engineering methodology.</p>
+        <span class="esa-badge">ESA Accepted</span>
+        <span class="card-arrow">Explore →</span>
+      </a>
+      <a href="/subjects_engineering-statistics.html" class="service-card subjects">
+        <span class="card-icon">📊</span>
+        <h3>Engineering Statistics</h3>
+        <p>Probability, data analysis, and statistical methods for engineers.</p>
+        <span class="esa-badge">ESA Accepted</span>
+        <span class="card-arrow">Explore →</span>
+      </a>
+      <a href="/subjects_college-engineering.html" class="service-card subjects">
+        <span class="card-icon">🎓</span>
+        <h3>College Engineering</h3>
+        <p>Support for undergraduate engineering coursework across disciplines.</p>
+        <span class="esa-badge">ESA Accepted</span>
+        <span class="card-arrow">Explore →</span>
+      </a>
+      <a href="/subjects_fe-exam.html" class="service-card subjects">
+        <span class="card-icon">📝</span>
+        <h3>FE Exam Prep</h3>
+        <p>Fundamentals of Engineering exam preparation and review strategies.</p>
+        <span class="esa-badge">ESA Accepted</span>
+        <span class="card-arrow">Explore →</span>
+      </a>
+      <a href="/subjects_art-color.html" class="service-card subjects">
+        <span class="card-icon">🎨</span>
+        <h3>K–5 Art & Color</h3>
+        <p>Color theory, basic techniques, and creative confidence for younger learners.</p>
+        <span class="esa-badge">ESA Accepted</span>
+        <span class="card-arrow">Explore →</span>
+      </a>
+      <a href="/subjects_coding-basics.html" class="service-card subjects">
+        <span class="card-icon">💻</span>
+        <h3>Coding Basics (K–12)</h3>
+        <p>Programming fundamentals and hands-on projects that make coding click.</p>
+        <span class="esa-badge">ESA Accepted</span>
+        <span class="card-arrow">Explore →</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- TEST PREP -->
+  <div class="category-section">
+    <div class="category-header">
+      <span class="category-icon">🎯</span>
+      <div>
+        <h2>Test Prep</h2>
+        <p>Strategic preparation for high-stakes exams</p>
+      </div>
+    </div>
+    <div class="cards-grid">
+      <a href="/test-prep_sat-act.html" class="service-card test-prep">
+        <span class="card-icon">📐</span>
+        <h3>SAT / ACT Prep</h3>
+        <p>Score-raising strategies, practice tests, and targeted skill building.</p>
+        <span class="esa-badge">ESA Accepted</span>
+        <span class="card-arrow">Explore →</span>
+      </a>
+      <a href="/test-prep_ap.html" class="service-card test-prep">
+        <span class="card-icon">⭐</span>
+        <h3>AP Exam Prep</h3>
+        <p>Subject-specific AP preparation to maximize scores and earn college credit.</p>
+        <span class="esa-badge">ESA Accepted</span>
+        <span class="card-arrow">Explore →</span>
+      </a>
+      <a href="/test-prep_ib.html" class="service-card test-prep">
+        <span class="card-icon">🌍</span>
+        <h3>IB Exam Prep</h3>
+        <p>International Baccalaureate support across HL and SL subjects.</p>
+        <span class="esa-badge">ESA Accepted</span>
+        <span class="card-arrow">Explore →</span>
+      </a>
+      <a href="/test-prep_ged.html" class="service-card test-prep">
+        <span class="card-icon">📜</span>
+        <h3>GED Prep</h3>
+        <p>Comprehensive GED preparation for adult learners ready to earn their diploma.</p>
+        <span class="esa-badge">ESA Accepted</span>
+        <span class="card-arrow">Explore →</span>
+      </a>
+      <a href="/test-prep_gre.html" class="service-card test-prep">
+        <span class="card-icon">🏛️</span>
+        <h3>GRE Prep</h3>
+        <p>Graduate Record Exam prep for students applying to graduate programs.</p>
+        <span class="esa-badge">ESA Accepted</span>
+        <span class="card-arrow">Explore →</span>
+      </a>
+      <a href="/test-prep_college-readiness.html" class="service-card test-prep">
+        <span class="card-icon">🎓</span>
+        <h3>College Readiness</h3>
+        <p>Skills and strategies for a successful transition to college-level academics.</p>
+        <span class="esa-badge">ESA Accepted</span>
+        <span class="card-arrow">Explore →</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- SPECIALIZED SUPPORT -->
+  <div class="category-section">
+    <div class="category-header">
+      <span class="category-icon">💡</span>
+      <div>
+        <h2>Specialized Support</h2>
+        <p>Targeted programs for diverse learning needs and life skills</p>
+      </div>
+    </div>
+    <div class="cards-grid">
+      <a href="/support_sel.html" class="service-card support featured">
+        <span class="card-icon">❤️</span>
+        <h3>Social-Emotional Learning</h3>
+        <p>Building self-awareness, empathy, and emotional regulation skills alongside academics.</p>
+        <span class="specialty-badge">⭐ Laura's Specialty</span>
+        <span class="card-arrow">Explore →</span>
+      </a>
+      <a href="/support_adhd.html" class="service-card support">
+        <span class="card-icon">⚡</span>
+        <h3>ADHD Support</h3>
+        <p>Focus strategies, structured sessions, and tools designed for ADHD learners.</p>
+        <span class="esa-badge">ESA Accepted</span>
+        <span class="card-arrow">Explore →</span>
+      </a>
+      <a href="/support_autism.html" class="service-card support">
+        <span class="card-icon">🌈</span>
+        <h3>Autism Support</h3>
+        <p>Individualized, sensory-aware tutoring for autistic students at every level.</p>
+        <span class="esa-badge">ESA Accepted</span>
+        <span class="card-arrow">Explore →</span>
+      </a>
+      <a href="/support_dyslexia-dysgraphia.html" class="service-card support">
+        <span class="card-icon">📝</span>
+        <h3>Dyslexia & Dysgraphia</h3>
+        <p>Multisensory reading and writing strategies for students with language-based LDs.</p>
+        <span class="esa-badge">ESA Accepted</span>
+        <span class="card-arrow">Explore →</span>
+      </a>
+      <a href="/support_gifted-neurodiverse.html" class="service-card support">
+        <span class="card-icon">🌟</span>
+        <h3>Gifted & Neurodiverse</h3>
+        <p>Enrichment and challenge for twice-exceptional and gifted learners.</p>
+        <span class="esa-badge">ESA Accepted</span>
+        <span class="card-arrow">Explore →</span>
+      </a>
+      <a href="/support_executive-functioning.html" class="service-card support">
+        <span class="card-icon">🗂️</span>
+        <h3>Executive Functioning</h3>
+        <p>Organization, planning, time management, and self-regulation skills.</p>
+        <span class="esa-badge">ESA Accepted</span>
+        <span class="card-arrow">Explore →</span>
+      </a>
+      <a href="/support_sped-acceleration.html" class="service-card support">
+        <span class="card-icon">🚀</span>
+        <h3>SpEd & Acceleration</h3>
+        <p>IEP-aligned support and acceleration programs for special education students.</p>
+        <span class="esa-badge">ESA Accepted</span>
+        <span class="card-arrow">Explore →</span>
+      </a>
+      <a href="/support_academic-coaching.html" class="service-card support">
+        <span class="card-icon">🏆</span>
+        <h3>Academic Coaching</h3>
+        <p>Study skills, goal setting, and accountability coaching for student success.</p>
+        <span class="esa-badge">ESA Accepted</span>
+        <span class="card-arrow">Explore →</span>
+      </a>
+      <a href="/support_career-readiness.html" class="service-card support">
+        <span class="card-icon">💼</span>
+        <h3>Career Readiness</h3>
+        <p>Resume, interview prep, and professional skills for students entering the workforce.</p>
+        <span class="esa-badge">ESA Accepted</span>
+        <span class="card-arrow">Explore →</span>
+      </a>
+      <a href="/support_financial-literacy.html" class="service-card support">
+        <span class="card-icon">💰</span>
+        <h3>Financial Literacy</h3>
+        <p>Budgeting, saving, investing basics, and real-world money management skills.</p>
+        <span class="esa-badge">ESA Accepted</span>
+        <span class="card-arrow">Explore →</span>
+      </a>
+      <a href="/support_life-skills.html" class="service-card support">
+        <span class="card-icon">🏠</span>
+        <h3>Life Skills</h3>
+        <p>Practical independence skills for teens and young adults with diverse needs.</p>
+        <span class="esa-badge">ESA Accepted</span>
+        <span class="card-arrow">Explore →</span>
+      </a>
+      <a href="/support_decision-making.html" class="service-card support">
+        <span class="card-icon">🧭</span>
+        <h3>Decision Making</h3>
+        <p>Critical thinking frameworks and problem-solving strategies for life decisions.</p>
+        <span class="esa-badge">ESA Accepted</span>
+        <span class="card-arrow">Explore →</span>
+      </a>
+      <a href="/support_fitness.html" class="service-card support">
+        <span class="card-icon">💪</span>
+        <h3>Fitness & Wellness</h3>
+        <p>Healthy habits, physical activity planning, and wellness education.</p>
+        <span class="esa-badge">ESA Accepted</span>
+        <span class="card-arrow">Explore →</span>
+      </a>
+      <a href="/support_game-based-tutoring.html" class="service-card support">
+        <span class="card-icon">🎮</span>
+        <h3>Game-Based Tutoring</h3>
+        <p>Learning through play — gamified sessions that make hard concepts click.</p>
+        <span class="esa-badge">ESA Accepted</span>
+        <span class="card-arrow">Explore →</span>
+      </a>
+      <a href="/support_multilingual-learners.html" class="service-card support">
+        <span class="card-icon">🌐</span>
+        <h3>Multilingual Learners</h3>
+        <p>Academic support that builds on the strengths of students who speak more than one language.</p>
+        <span class="esa-badge">ESA Accepted</span>
+        <span class="card-arrow">Explore →</span>
+      </a>
+      <a href="/support_spanish-basics.html" class="service-card support">
+        <span class="card-icon">🇪🇸</span>
+        <h3>Spanish Basics for Beginners</h3>
+        <p>Friendly, foundational Spanish instruction for true beginners.</p>
+        <span class="esa-badge">ESA Accepted</span>
+        <span class="card-arrow">Explore →</span>
+      </a>
+      <a href="/support_outdoor-learning.html" class="service-card support">
+        <span class="card-icon">🌳</span>
+        <h3>Outdoor Learning</h3>
+        <p>Hands-on, nature-based learning for students who focus best on the move.</p>
+        <span class="esa-badge">ESA Accepted</span>
+        <span class="card-arrow">Explore →</span>
+      </a>
+      <a href="/support_montessori.html" class="service-card support">
+        <span class="card-icon">🧺</span>
+        <h3>Montessori-Inspired Education</h3>
+        <p>Child-led, hands-on learning that builds independence and curiosity.</p>
+        <span class="esa-badge">ESA Accepted</span>
+        <span class="card-arrow">Explore →</span>
+      </a>
+      <a href="/support_cultures-communities.html" class="service-card support">
+        <span class="card-icon">🌍</span>
+        <h3>Cultures & Communities Awareness</h3>
+        <p>Enrichment that builds cultural awareness, empathy, and global perspective.</p>
+        <span class="esa-badge">ESA Accepted</span>
+        <span class="card-arrow">Explore →</span>
+      </a>
+      <a href="/support_healthcare-literacy.html" class="service-card support">
+        <span class="card-icon">🩺</span>
+        <h3>Healthcare Literacy</h3>
+        <p>Practical instruction in medical vocabulary, systems, and health decision-making.</p>
+        <span class="esa-badge">ESA Accepted</span>
+        <span class="card-arrow">Explore →</span>
+      </a>
+      <a href="/support_non-verbal.html" class="service-card support">
+        <span class="card-icon">🤝</span>
+        <h3>Non-Verbal Student Support</h3>
+        <p>Individualized tutoring using visual supports and AAC-friendly methods.</p>
+        <span class="esa-badge">ESA Accepted</span>
+        <span class="card-arrow">Explore →</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- CTA BAR -->
+  <div class="cta-bar">
+    <h3>Not sure where to start?</h3>
+    <p>Book a free 90-minute trial session and we'll figure out the right fit together.</p>
+    <div class="cta-buttons">
+      <a href="https://calendly.com/allinclusivetutoring" target="_blank" class="btn-primary">Book Free Trial →</a>
+      <a href="/signup.html" class="btn-ghost">Sign Up Now</a>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>© 2025 All Inclusive Tutoring Solutions LLC. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
